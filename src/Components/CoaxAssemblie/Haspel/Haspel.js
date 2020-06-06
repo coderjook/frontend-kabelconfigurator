@@ -8,6 +8,7 @@ import {
   ProductStyled,
 } from "../../../Styles/ProductStyle";
 import HaspelGrid from "./HaspelGrid";
+import { HaspelDb } from "./HaspelDb";
 import { HaspelDialog } from "./HaspelDialog";
 import { useOpenHaspelDialog } from "../../../Hooks/useOpenHaspelDialog";
 import { ConfirmButton } from "../../../Styles/DialogStyle";
@@ -36,7 +37,7 @@ function Haspel({ ...orders }) {
     AssemblieContext
   );
   const openHaspel = useOpenHaspelDialog();
-  const toggleContent = useToggleContent();
+  const toggleContent = useToggleContent(false);
   const [showHaspelGrid, setShowHaspelGrid] = useState(false);
   const [opmaakHaspel, setOpmaakHaspel] = useState("gebonden");
 
@@ -50,24 +51,35 @@ function Haspel({ ...orders }) {
 
   return (
     <>
-      {selectedAssemblie ? (
+      {!selectedAssemblie ? (
         <>
-          {!selectedAssemblie.details_haspel ? (
-            <ProductHeader active onClick={toggleContent.toggleShowContent}>
-              <div>Stap 4: Selecteer afwerking: Haspel of Gebonden</div>
-              <div /> <div />
-            </ProductHeader>
-          ) : (
-            <ProductHeader onClick={toggleContent.toggleShowContent}>
-              <div>
-                Geselecteerde opmaak: {selectedAssemblie.details_haspel}
-              </div>
-              <div></div>
-              <div />
-            </ProductHeader>
-          )}
+          <ProductHeader>
+            <div>Stap 4: Selecteer afwerking: Haspel of Gebonden</div>
+            <div /> <div />
+          </ProductHeader>
+        </>
+      ) : !selectedAssemblie.details_haspel ? (
+        <>
+          <ProductHeader active onClick={toggleContent.toggleShowContent}>
+            <div>Stap 4: Selecteer afwerking: Haspel of Gebonden</div>
+            <div /> <div />
+          </ProductHeader>
+        </>
+      ) : (
+        <>
+          <ProductHeader onClick={toggleContent.toggleShowContent}>
+            <div>
+              Geselecteerde afwerking: {selectedAssemblie.details_haspel}
+            </div>
+            <div></div>
+            <div />
+          </ProductHeader>
+        </>
+      )}
 
-          {toggleContent.toggleContent ? (
+      {toggleContent.toggleContent ? (
+        selectedAssemblie.artnr_haspel !== 999999 ? (
+          <>
             <ProductStyled>
               <ProductGrid3>
                 <div>
@@ -91,20 +103,9 @@ function Haspel({ ...orders }) {
                 <div />
               </ProductGrid3>
             </ProductStyled>
-          ) : null}
-        </>
-      ) : (
-        <ProductHeader active onClick={toggleContent.toggleShowContent}>
-          <div>Stap 4: Selecteer afwerking: Haspel of Gebonden</div>
-          <div /> <div />
-        </ProductHeader>
-      )}
-
-      <HaspelDialog
-        {...openHaspel}
-        {...orders}
-        closeShowHaspelGrid={() => toggleContent.setToggleContent(false)}
-      />
+          </>
+        ) : null
+      ) : null}
       {toggleContent.toggleContent ? (
         <>
           <ProductContentCheck>
@@ -142,9 +143,19 @@ function Haspel({ ...orders }) {
               selecteer de opmaak gebonden
             </ConfirmButton>
           ) : null}
-          {opmaakHaspel === "haspel" ? <HaspelGrid {...openHaspel} /> : null}
+          {opmaakHaspel === "haspel" ? (
+            <>
+              <HaspelGrid {...openHaspel} />
+              <HaspelDb {...openHaspel} />
+            </>
+          ) : null}
         </>
       ) : null}
+      <HaspelDialog
+        {...openHaspel}
+        {...orders}
+        closeShowHaspelGrid={() => toggleContent.setToggleContent(false)}
+      />
     </>
   );
 }
