@@ -20,12 +20,6 @@ function Cable() {
   const toggleContent = useToggleContent();
   const openCableDialog = useOpenCableDialog();
   const [showCableGrid, setShowCableGrid] = useState(true);
-  // const [currentCable, setCurrentCable] = useState({});
-
-  // const updateCurrentCable = (order) => {
-  //   const newCurrentCable = order;
-  //   setCurrentCable(newCurrentCable);
-  // };
 
   return (
     <>

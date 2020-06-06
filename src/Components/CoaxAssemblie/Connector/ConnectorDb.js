@@ -68,7 +68,6 @@ export const ConnectorDb = ({ setOpenConnectorDialog }) => {
               </Product>
             );
           })}
-          ;
         </ProductGrid>
       </ProductStyled>
     </>

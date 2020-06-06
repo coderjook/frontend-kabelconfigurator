@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
@@ -53,24 +53,34 @@ function Haspel({ ...orders }) {
     <>
       {!selectedAssemblie ? (
         <>
-          <ProductHeader>
+          <ProductHeader active>
             <div>Stap 4: Selecteer afwerking: Haspel of Gebonden</div>
             <div /> <div />
           </ProductHeader>
         </>
-      ) : !selectedAssemblie.details_haspel ? (
-        <>
-          <ProductHeader active onClick={toggleContent.toggleShowContent}>
-            <div>Stap 4: Selecteer afwerking: Haspel of Gebonden</div>
-            <div /> <div />
-          </ProductHeader>
-        </>
+      ) : selectedAssemblie.lengte_kabel > 20 ? (
+        !selectedAssemblie.details_haspel ? (
+          <>
+            <ProductHeader active onClick={toggleContent.toggleShowContent}>
+              <div>Stap 4: Selecteer afwerking: Haspel of Gebonden</div>
+              <div /> <div />
+            </ProductHeader>
+          </>
+        ) : (
+          <>
+            <ProductHeader onClick={toggleContent.toggleShowContent}>
+              <div>
+                Geselecteerde afwerking: {selectedAssemblie.details_haspel}
+              </div>
+              <div></div>
+              <div />
+            </ProductHeader>
+          </>
+        )
       ) : (
         <>
-          <ProductHeader onClick={toggleContent.toggleShowContent}>
-            <div>
-              Geselecteerde afwerking: {selectedAssemblie.details_haspel}
-            </div>
+          <ProductHeader>
+            <div>opmaak op haspel mogelijk vanaf lengte kabel 20 meter</div>
             <div></div>
             <div />
           </ProductHeader>

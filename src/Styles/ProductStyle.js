@@ -7,18 +7,20 @@ export const ProductStyled = styled.div`
 
 export const ProductHeader = styled.div`
   display: grid;
+  filter: contrast(80%);
+  color: ${romalBlauw};
   background-color: ${romalLichtBlauw};
-  color: grey;
-  grid-template-columns: 2fr 1fr 1fr;
+
+  grid-template-columns: 4fr 1fr 1fr;
   justify-items: start;
   row-gap: 20px;
   // column-gap: 5px;
   padding: 15px 10px 15px 20px;
   margin-bottom: 10px;
-  font-size: 25px;
+  font-size: 20px;
   &:hover {
-    filter: contrast(80%);
-    color: ${romalBlauw};
+    filter: contrast(100%);
+    color: grey;
     cursor: pointer;
   }
   ${({ active }) =>
