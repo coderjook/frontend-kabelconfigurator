@@ -1,15 +1,17 @@
 import React, { useState, useContext } from "react";
-import { CableDb } from "./CableDb";
-import CableGrid from "./CableGrid";
+//hooks
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
-import { CableDialog } from "./CableDialog";
 import { useOpenCableDialog } from "../../../Hooks/useOpenCableDialog";
+//components
+import { CableDb } from "./CableDb";
+// data kabel vanuit Data: import CableGrid from "./CableGrid";
+import { CableDialog } from "./CableDialog";
+//styles
+import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
 import {
   Product,
   ProductGrid3,
-  ProductImg,
   ProductName,
   ProductDetails,
 } from "../../../Styles/ProductGrid";
@@ -43,7 +45,6 @@ function Cable() {
                       openCableDialog.setOpenCableDialog(selectedAssemblie);
                     }}
                   >
-                    {/* <ProductImg img={currentCable.img} /> */}
                     <ProductName>
                       <div>{selectedAssemblie.details_kabel}</div>
                     </ProductName>
@@ -82,9 +83,7 @@ function Cable() {
       ) : null}
       <CableDialog
         {...openCableDialog}
-        // {...orders}
         closeShowCableGrid={() => setShowCableGrid(false)}
-        // updateCurrentCable={(order) => updateCurrentCable(order)}
       />
 
       {showCableGrid ? (
@@ -94,7 +93,7 @@ function Cable() {
             <div /> <div />
           </ProductHeader>
           <CableDb {...openCableDialog} />
-          <CableGrid {...openCableDialog} />
+          {/* <CableGrid {...openCableDialog} /> */}
         </>
       ) : null}
     </>

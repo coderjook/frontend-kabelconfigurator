@@ -1,20 +1,23 @@
 import React, { useState, useContext } from "react";
-import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
+// hooks
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-import { ConnectorDialog } from "./ConnectorDialog";
-import ConnectorGrid from "./ConnectorGrid";
 import { useOpenConnectorDialog } from "../../../Hooks/useOpenConnectorDialog";
+// components
+import { ConnectorDialog } from "./ConnectorDialog";
+import { ConnectorDb } from "./ConnectorDb";
+// import ConnectorGrid from "./ConnectorGrid";
+//styles
+import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
 import { ChangeButton } from "../../../Styles/ButtonStyle";
 import {
   Product,
   ProductGrid3,
-  ProductImg,
   ProductName,
   ProductDetails,
 } from "../../../Styles/ProductGrid";
 
-function Connector({ ...orders }) {
+function ConnectorB() {
   const { selectedAssemblie } = useContext(AssemblieContext);
   const toggleContent = useToggleContent();
   const openConnectorDialog = useOpenConnectorDialog();
@@ -90,11 +93,12 @@ function Connector({ ...orders }) {
             <div>Stap 3: Selecteer een connector voor kant B</div>
             <div /> <div />
           </ProductHeader>
-          <ConnectorGrid {...openConnectorDialog} />
+          <ConnectorDb {...openConnectorDialog} />
+          {/* <ConnectorGrid {...openConnectorDialog} /> */}
         </>
       ) : null}
     </>
   );
 }
 
-export default Connector;
+export default ConnectorB;

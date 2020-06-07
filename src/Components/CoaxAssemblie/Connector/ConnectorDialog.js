@@ -1,7 +1,13 @@
 import React, { useState, useContext } from "react";
+//hooks
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-
+import { useInstallation } from "../../../Hooks/useInstallation";
+//components
+import Tules from "./Tules";
+//styles
 import styled from "styled-components";
+import { ProductDetails } from "../../../Styles/ProductGrid";
+import { ConfirmButton } from "../../../Styles/ButtonStyle";
 import {
   Dialog,
   DialogContent,
@@ -9,11 +15,7 @@ import {
   DialogShadow,
   DialogBanner,
   DialogBannerName,
-  ConfirmButton,
 } from "../../../Styles/DialogStyle";
-import Tules from "./Tules";
-import { formatPrice } from "../../../Data/ConnectorData";
-import { useInstallation } from "../../../Hooks/useInstallation";
 
 const CursorPointer = `cursor: pointer`;
 
@@ -25,23 +27,21 @@ const Label = styled.label`
   ${CursorPointer}
 `;
 
-export function getPrice(order) {
-  return order.inkoopprijs;
-}
+let subPriceConnector = null;
+const getPriceConnector = (openConnectorDialog, tuleOrder) => {
+  subPriceConnector =
+    openConnectorDialog.inkoopprijs / openConnectorDialog.prijsper;
+  return subPriceConnector;
+};
 
 function ConnectorDialogContainer({
   closeShowConnectorGrid,
-  selectedConnector,
   openConnectorDialog,
   setOpenConnectorDialog,
-  updateCurrentConnectorA,
-  updateCurrentConnectorB,
-  setOrders,
-  orders,
   connector,
 }) {
   const installationRadio = useInstallation();
-  const isEditing = openConnectorDialog.index > -1;
+  // const isEditing = openConnectorDialog.index > -1;
   const [tuleState, setTuleState] = useState();
   const { UpdateAssemblieConnA, UpdateAssemblieConnB } = useContext(
     AssemblieContext
@@ -53,36 +53,17 @@ function ConnectorDialogContainer({
     setOpenConnectorDialog();
   }
 
-  console.log({ tuleOrder });
-
-  const order = {
-    assemblieItem: "connector",
-    ...openConnectorDialog,
-    installation: installationRadio.value,
-    tule: tuleOrder,
-  };
-
-  // function editOrder() {
-  //   const newOrders = [...orders];
-  //   newOrders[openConnectorDialog.index] = order;
-  //   setOrders(newOrders);
-  //   close();
-  // }
-
   function addToOrder() {
-    // setOrders([...orders, order]);
-    // selectedConnector(openConnectorDialog.typenummer);
     if (connector === "connA") {
       UpdateAssemblieConnA(
         openConnectorDialog.artikelnummer,
         openConnectorDialog.typenummer,
         openConnectorDialog.connectortype,
         openConnectorDialog.assemblage,
-        openConnectorDialog.inkoopprijs,
+        subPriceConnector,
         installationRadio.value,
         tuleOrder
       );
-      // updateCurrentConnectorA(order);
     } else {
       UpdateAssemblieConnB(
         openConnectorDialog.artikelnummer,
@@ -106,8 +87,18 @@ function ConnectorDialogContainer({
           <DialogBannerName>{openConnectorDialog.typenummer}</DialogBannerName>
         </DialogBanner>
         <DialogContent>
-          {/* {openConnector.tulegroep} */}
-          {connector}
+          <ProductDetails>
+            <div>artikelnummer: {openConnectorDialog.artikelnummer}</div>
+            <div>merk: {openConnectorDialog.merk}</div>
+            <div>
+              inkoopprijs: {openConnectorDialog.inkoopprijs} per{" "}
+              {openConnectorDialog.prijsper}
+            </div>
+            <div>kabelgroep: {openConnectorDialog.kabelgroep}</div>
+            <div>assemblage: {openConnectorDialog.assemblage}</div>
+            <div>tulegroep: {openConnectorDialog.tulegroep}</div>
+          </ProductDetails>
+
           <h3> Kies de afwerking:</h3>
           <RadioInput
             type="radio"
@@ -147,11 +138,15 @@ function ConnectorDialogContainer({
               />
             </>
           ) : null}
+          <ProductDetails>
+            <div>
+              berekenprijs connector:{" "}
+              {getPriceConnector(openConnectorDialog, tuleOrder)}
+            </div>
+          </ProductDetails>
         </DialogContent>
         <DialogFooter>
           <ConfirmButton onClick={addToOrder}>
-            {/* {isEditing ? "update order" : "add to order"}{" "}
-            {formatPrice(getPrice(order))} */}
             selecteer deze connector
           </ConfirmButton>
         </DialogFooter>

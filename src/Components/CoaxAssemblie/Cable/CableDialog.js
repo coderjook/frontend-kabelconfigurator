@@ -1,5 +1,10 @@
 import React, { useState, useContext } from "react";
+//hooks
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
+import { useLength } from "../../../Hooks/useLength";
+//components
+import { CableLengthInput } from "./CableLengthInput";
+//styles
 import {
   Dialog,
   DialogContent,
@@ -7,11 +12,17 @@ import {
   DialogShadow,
   DialogBanner,
   DialogBannerName,
-  ConfirmButton,
 } from "../../../Styles/DialogStyle";
-import { formatPrice } from "../../../Utils/FormatPrice";
-import { CableLengthInput } from "./CableLengthInput";
-import { useLength } from "../../../Hooks/useLength";
+import { ProductDetails } from "../../../Styles/ProductGrid";
+import { ConfirmButton } from "../../../Styles/ButtonStyle";
+
+let subPriceCable = null;
+const getPriceCable = (openCableDialog, cableLength) => {
+  subPriceCable =
+    cableLength.value *
+    (openCableDialog.inkoopprijs / openCableDialog.prijsper);
+  return subPriceCable;
+};
 
 function CableDialogContainer({
   openCableDialog,
@@ -32,7 +43,7 @@ function CableDialogContainer({
       openCableDialog.typenummer,
       cableLength.value,
       openCableDialog.kabelgroep,
-      openCableDialog.inkoopprijs,
+      subPriceCable,
       openCableDialog.diameter_buitenmantel,
       openCableDialog.opmaak_aantal,
       openCableDialog.haspelgeschikt
@@ -45,15 +56,30 @@ function CableDialogContainer({
       <DialogShadow onClick={close} />
       <Dialog>
         <DialogBanner img={openCableDialog.img}>
-          <DialogBannerName>
-            {" "}
-            {openCableDialog.typenummer}
-            {}
-          </DialogBannerName>
-          <DialogBannerName> {openCableDialog.kabelgroep} </DialogBannerName>
+          <DialogBannerName>{openCableDialog.typenummer}</DialogBannerName>
         </DialogBanner>
         <DialogContent>
+          <ProductDetails>
+            <div>artikelnummer: {openCableDialog.artikelnummer}</div>
+            <div>merk: {openCableDialog.merk}</div>
+            <div>
+              inkoopprijs: {openCableDialog.inkoopprijs} per{" "}
+              {openCableDialog.prijsper} meter
+            </div>
+
+            <div>kabelgroep: {openCableDialog.kabelgroep}</div>
+            <div>maximale lengte: {openCableDialog.opmaak_aantal}</div>
+            <div>
+              geschikt voor haspel ( bij minimale lengte kabel 20 meter):
+              {openCableDialog.haspelgeschikt ? "ja" : "nee"}
+            </div>
+          </ProductDetails>
           <CableLengthInput cableLength={cableLength} />
+          <ProductDetails>
+            <div>
+              berekenprijs kabel: {getPriceCable(openCableDialog, cableLength)}
+            </div>
+          </ProductDetails>
         </DialogContent>
         <DialogFooter>
           <ConfirmButton onClick={addToOrder}>

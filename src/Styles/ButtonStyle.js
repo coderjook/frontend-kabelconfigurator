@@ -7,7 +7,9 @@ export const ConfirmButton = styled.button`
   color: white;
   padding: 10px;
   text-align: center;
+  border-width: 0px;
   width: 200px;
+  filter: contrast(90%);
   cursor: pointer;
   background-color: ${romalOranje};
   ${({ disabled }) =>
@@ -17,6 +19,11 @@ export const ConfirmButton = styled.button`
     background-color: grey;
     pointer-events: none;
    `}
+  &:hover {
+    cursor: pointer;
+    filter: contrast(100%);
+    box-shadow: 0px 0px 5px 0px grey;
+  }
 `;
 
 export const ChangeButton = styled.button`
@@ -37,8 +44,6 @@ export const ChangeButton = styled.button`
    `}
   &:hover {
     cursor: pointer;
-    // margin-top: 0px;
-    // margin-bottom: 5px;
     filter: contrast(100%);
     box-shadow: 0px 0px 3px 0px grey;
   }

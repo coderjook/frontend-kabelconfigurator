@@ -9,6 +9,8 @@ import {
   ProductName,
   ProductDetails,
 } from "../../../Styles/ProductGrid";
+// images
+import connectorImg from "../../../Assets/Images/connector.jpg";
 
 export const ConnectorDb = ({ setOpenConnectorDialog }) => {
   const { selectedAssemblie } = useContext(AssemblieContext);
@@ -50,7 +52,7 @@ export const ConnectorDb = ({ setOpenConnectorDialog }) => {
                   setOpenConnectorDialog(connector);
                 }}
               >
-                {/* <ProductImg img={connector.img} /> */}
+                <ProductImg img={connectorImg} />
                 <ProductName>
                   <div>{connector.typenummer}</div>
                 </ProductName>

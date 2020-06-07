@@ -49,16 +49,16 @@ export const DialogBanner = styled.div`
 `;
 
 export const DialogBannerName = styled(ProductLabel)`
-  font-size: 30px;
-  padding: 5px 40px;
+  font-size: 20px;
+  padding: 20px 40px;
   top: ${({ img }) => (img ? `100px` : `20px`)};
 `;
 
-export const ConfirmButton = styled(title)`
+export const ConfirmButton = styled.button`
   margin: 10px;
   color: white;
-  height: 20px;
-  border-radius: 5px;
+  height: 40px;
+  // border-radius: 0px;
   padding: 10px;
   text-align: center;
   width: 200px;

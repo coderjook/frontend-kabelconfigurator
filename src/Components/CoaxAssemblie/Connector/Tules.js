@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { tules } from "../../../Data/TuleGroepData";
+// import { tules } from "../../../Data/TuleGroepData";
 import axios from "axios";
 
 function Tules(props) {
@@ -20,7 +20,7 @@ function Tules(props) {
 
   return (
     <div>
-      <h3>kies de kleur van de tule:</h3>
+      <h3>Kies de kleur van de tule:</h3>
       {tuleInfo.map((tule) =>
         tule.tulegroep === `${props.tulegroep}` ? (
           <>

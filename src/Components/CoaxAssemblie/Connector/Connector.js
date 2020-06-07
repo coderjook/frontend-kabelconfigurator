@@ -1,21 +1,22 @@
 import React, { useState, useContext } from "react";
-import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
+// hooks
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
+import { useOpenConnectorDialog } from "../../../Hooks/useOpenConnectorDialog";
+// components
 import { ConnectorDb } from "./ConnectorDb";
 import { ConnectorDialog } from "./ConnectorDialog";
-import ConnectorGrid from "./ConnectorGrid";
-import { useOpenConnectorDialog } from "../../../Hooks/useOpenConnectorDialog";
+// styles
 import { ChangeButton } from "../../../Styles/ButtonStyle";
+import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
 import {
   Product,
   ProductGrid3,
-  ProductImg,
   ProductName,
   ProductDetails,
 } from "../../../Styles/ProductGrid";
 
-function Connector({ ...orders }) {
+function Connector() {
   const { selectedAssemblie } = useContext(AssemblieContext);
   const toggleContent = useToggleContent();
   const openConnectorDialog = useOpenConnectorDialog();
@@ -91,7 +92,6 @@ function Connector({ ...orders }) {
             <div>Stap 2: Selecteer een connector voor kant A</div>
             <div /> <div />
           </ProductHeader>
-          <ConnectorGrid {...openConnectorDialog} />
           <ConnectorDb {...openConnectorDialog} />
         </>
       ) : null}
