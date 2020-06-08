@@ -50,7 +50,7 @@ function CableDialogContainer({
     );
     close();
   }
-
+  console.log(openCableDialog);
   return (
     <>
       <DialogShadow onClick={close} />
@@ -61,6 +61,7 @@ function CableDialogContainer({
         <DialogContent>
           <ProductDetails>
             <div>artikelnummer: {openCableDialog.artikelnummer}</div>
+            <div>status: {openCableDialog.cableStatus}</div>
             <div>merk: {openCableDialog.merk}</div>
             <div>
               inkoopprijs: {openCableDialog.inkoopprijs} per{" "}

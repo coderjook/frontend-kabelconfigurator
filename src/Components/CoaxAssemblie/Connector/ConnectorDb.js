@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+//hooks
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
+//styles
 import { ProductStyled } from "../../../Styles/ProductStyle";
 import {
   Product,

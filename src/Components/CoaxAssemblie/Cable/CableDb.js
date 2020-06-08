@@ -12,7 +12,7 @@ import {
 // images
 import kabelImg from "../../../Assets/Images/lmr40075.jpg";
 
-export const CableDb = ({ setOpenCableDialog }) => {
+export const CableDb = ({ setOpenCableDialog, cableStatus }) => {
   const [cableInfo, setCableInfo] = useState([]);
   const fetchCableInfo = () => {
     axios
@@ -37,7 +37,7 @@ export const CableDb = ({ setOpenCableDialog }) => {
               <Product
                 key={index}
                 onClick={() => {
-                  setOpenCableDialog(cable);
+                  setOpenCableDialog(cable, cableStatus);
                 }}
               >
                 <ProductImg img={kabelImg} alt="kabel" />

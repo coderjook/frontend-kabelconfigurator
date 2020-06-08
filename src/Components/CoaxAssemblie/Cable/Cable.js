@@ -2,11 +2,15 @@ import React, { useState, useContext } from "react";
 //hooks
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-import { useOpenCableDialog } from "../../../Hooks/useOpenCableDialog";
+import {
+  useOpenCableDialog,
+  useOpenCableUpdateDialog,
+} from "../../../Hooks/useOpenCableDialog";
 //components
 import { CableDb } from "./CableDb";
 // data kabel vanuit Data: import CableGrid from "./CableGrid";
 import { CableDialog } from "./CableDialog";
+import { CableUpdateDialog } from "./CableUpdateDialog";
 //styles
 import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
 import {
@@ -21,11 +25,12 @@ function Cable() {
   const { selectedAssemblie } = useContext(AssemblieContext);
   const toggleContent = useToggleContent();
   const openCableDialog = useOpenCableDialog();
-  const [showCableGrid, setShowCableGrid] = useState(true);
+  const openCableUpdateDialog = useOpenCableUpdateDialog();
+  const [showCableGrid, setShowCableGrid] = useState("new");
 
   return (
     <>
-      {selectedAssemblie && !showCableGrid ? (
+      {selectedAssemblie && showCableGrid === "none" ? (
         <>
           {" "}
           <ProductHeader onClick={toggleContent.toggleShowContent}>
@@ -42,7 +47,9 @@ function Cable() {
                 <div>
                   <Product
                     onClick={() => {
-                      openCableDialog.setOpenCableDialog(selectedAssemblie);
+                      openCableUpdateDialog.setOpenCableUpdateDialog(
+                        selectedAssemblie
+                      );
                     }}
                   >
                     <ProductName>
@@ -65,12 +72,16 @@ function Cable() {
                   <Product>
                     <ChangeButton
                       onClick={() => {
-                        openCableDialog.setOpenCableDialog(selectedAssemblie);
+                        openCableUpdateDialog.setOpenCableUpdateDialog(
+                          selectedAssemblie
+                        );
                       }}
                     >
                       Wijzig lengte kabel
                     </ChangeButton>
-                    <ChangeButton onClick={() => setShowCableGrid(true)}>
+                    <ChangeButton
+                      onClick={() => setShowCableGrid("openUpdate")}
+                    >
                       selecteer een andere kabel
                     </ChangeButton>
                   </Product>
@@ -83,16 +94,37 @@ function Cable() {
       ) : null}
       <CableDialog
         {...openCableDialog}
-        closeShowCableGrid={() => setShowCableGrid(false)}
+        closeShowCableGrid={() => setShowCableGrid("none")}
+      />
+      <CableUpdateDialog
+        {...openCableUpdateDialog}
+        closeShowCableGrid={() => setShowCableGrid("none")}
       />
 
-      {showCableGrid ? (
+      {showCableGrid === "new" ? (
         <>
           <ProductHeader active>
             <div>Stap 1: Selecteer een kabel</div>
             <div /> <div />
           </ProductHeader>
-          <CableDb {...openCableDialog} />
+          <CableDb {...openCableDialog} cableStatus="cableNew" />
+          {/* <CableGrid {...openCableDialog} /> */}
+        </>
+      ) : showCableGrid === "openUpdate" ? (
+        <>
+          <ProductHeader active>
+            <div>Stap 1: Selecteer opnieuw een kabel</div>
+            <div /> <div />
+          </ProductHeader>
+          <h3>
+            {" "}
+            Let op, kiest u een andere kabel dan moet u opnieuw de connectoren,
+            haspel en afwerking invullen
+          </h3>
+          <ChangeButton onClick={() => setShowCableGrid("none")}>
+            terug
+          </ChangeButton>
+          <CableDb {...openCableDialog} cableStatus="cableUpdate" />
           {/* <CableGrid {...openCableDialog} /> */}
         </>
       ) : null}

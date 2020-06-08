@@ -25,61 +25,71 @@ function Connector() {
   return (
     <>
       {selectedAssemblie && !showConnectorGrid ? (
-        <>
-          {" "}
-          <ProductHeader onClick={toggleContent.toggleShowContent}>
-            <div>
-              Geselecteerde connector: {selectedAssemblie.details_connector_a}
-            </div>
-            <div></div>
-            <div />
-          </ProductHeader>
-          {toggleContent.toggleContent ? (
-            <ProductStyled>
-              <ProductGrid3>
-                <div>
-                  <Product
-                    onClick={() => {
-                      openConnectorDialog.setOpenConnectorDialog(
-                        selectedAssemblie
-                      );
-                    }}
-                  >
-                    <ProductName>
-                      <div>{selectedAssemblie.details_connector_a}</div>
-                    </ProductName>
-                    <ProductDetails>
-                      <div>
-                        Artikelnummer: {selectedAssemblie.artnr_connector_a}
-                      </div>
-                      <div>type: {selectedAssemblie.type_connector_a}</div>
-                      <div>
-                        afwerking: {selectedAssemblie.afwerking_connector_a}
-                      </div>
-                    </ProductDetails>
-                  </Product>
-                </div>
-                <div>
-                  <Product>
-                    <ChangeButton
+        selectedAssemblie.artnr_connector_a !== 999999 ? (
+          <>
+            {" "}
+            <ProductHeader onClick={toggleContent.toggleShowContent}>
+              <div>
+                Geselecteerde connector: {selectedAssemblie.details_connector_a}
+              </div>
+              <div></div>
+              <div />
+            </ProductHeader>
+            {toggleContent.toggleContent ? (
+              <ProductStyled>
+                <ProductGrid3>
+                  <div>
+                    <Product
                       onClick={() => {
                         openConnectorDialog.setOpenConnectorDialog(
                           selectedAssemblie
                         );
                       }}
                     >
-                      Wijzig connector afwerking
-                    </ChangeButton>
-                    <ChangeButton onClick={() => setShowConnectorGrid(true)}>
-                      selecteer een andere connector
-                    </ChangeButton>
-                  </Product>
-                </div>
-                <div />
-              </ProductGrid3>
-            </ProductStyled>
-          ) : null}
-        </>
+                      <ProductName>
+                        <div>{selectedAssemblie.details_connector_a}</div>
+                      </ProductName>
+                      <ProductDetails>
+                        <div>
+                          Artikelnummer: {selectedAssemblie.artnr_connector_a}
+                        </div>
+                        <div>type: {selectedAssemblie.type_connector_a}</div>
+                        <div>
+                          afwerking: {selectedAssemblie.afwerking_connector_a}
+                        </div>
+                      </ProductDetails>
+                    </Product>
+                  </div>
+                  <div>
+                    <Product>
+                      <ChangeButton
+                        onClick={() => {
+                          openConnectorDialog.setOpenConnectorDialog(
+                            selectedAssemblie
+                          );
+                        }}
+                      >
+                        Wijzig connector afwerking
+                      </ChangeButton>
+                      <ChangeButton onClick={() => setShowConnectorGrid(true)}>
+                        selecteer een andere connector
+                      </ChangeButton>
+                    </Product>
+                  </div>
+                  <div />
+                </ProductGrid3>
+              </ProductStyled>
+            ) : null}
+          </>
+        ) : (
+          <>
+            <ProductHeader active>
+              <div>Stap 2: Selecteer een connector voor kant A</div>
+              <div /> <div />
+            </ProductHeader>
+            <ConnectorDb {...openConnectorDialog} />
+          </>
+        )
       ) : null}
       <ConnectorDialog
         {...openConnectorDialog}

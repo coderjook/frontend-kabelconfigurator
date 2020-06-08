@@ -39,7 +39,7 @@ const IncrementButton = styled.div`
 export function CableLengthInput({ cableLength }) {
   return (
     <IncrementContainer>
-      <div>Vul de gewenste lengte van de kabel in (meters)</div>
+      <div>lengte van de kabel in (meters)</div>
       <IncrementButton
         onClick={() => {
           cableLength.setValue(cableLength.value - 1);

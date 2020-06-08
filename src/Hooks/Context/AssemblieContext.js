@@ -67,6 +67,75 @@ export const Provider = (props) => {
     setSelectedAssemblie(newAssemblie);
   };
 
+  const UpdateAssemblieCable = (
+    artnrCable,
+    detailsCable,
+    lengthCable,
+    groupCable,
+    priceCable,
+    diameterCable,
+    maxLengthCable,
+    haspelCable
+  ) => {
+    const updateAssemblie = {
+      ...assemblies,
+    };
+
+    updateAssemblie.artnr_kabel = artnrCable;
+    updateAssemblie.details_kabel = detailsCable;
+    updateAssemblie.lengte_kabel = lengthCable;
+    updateAssemblie.kabelgroep_kabel = groupCable;
+    updateAssemblie.prijs_kabel = priceCable;
+    updateAssemblie.diameter_buitenmantel = diameterCable;
+    updateAssemblie.opmaak_aantal = maxLengthCable;
+    updateAssemblie.haspelgeschikt = haspelCable;
+
+    updateAssemblie.artnr_connector_a = defaultArtnr;
+    updateAssemblie.details_connector_a = "";
+    updateAssemblie.type_connector_a = "";
+    updateAssemblie.assemblage_connector_a = "";
+    updateAssemblie.prijs_connector_a = 0;
+    updateAssemblie.afwerking_connector_a = "geen";
+    updateAssemblie.artnr_afwerking_a = defaultArtnr;
+
+    updateAssemblie.artnr_connector_b = defaultArtnr;
+    updateAssemblie.details_connector_b = "";
+    updateAssemblie.type_connector_b = "";
+    updateAssemblie.assemblage_connector_b = "";
+    updateAssemblie.prijs_connector_b = 0;
+    updateAssemblie.afwerking_connector_b = "geen";
+    updateAssemblie.artnr_afwerking_b = defaultArtnr;
+
+    setAssemblies(updateAssemblie);
+    setSelectedAssemblie(updateAssemblie);
+  };
+
+  const UpdateAssemblieCableLength = (
+    artnrCable,
+    detailsCable,
+    lengthCable,
+    groupCable,
+    priceCable,
+    diameterCable,
+    maxLengthCable,
+    haspelCable
+  ) => {
+    const updateAssemblie = {
+      ...assemblies,
+    };
+
+    updateAssemblie.artnr_kabel = artnrCable;
+    updateAssemblie.details_kabel = detailsCable;
+    updateAssemblie.lengte_kabel = lengthCable;
+    updateAssemblie.kabelgroep_kabel = groupCable;
+    updateAssemblie.prijs_kabel = priceCable;
+    updateAssemblie.diameter_buitenmantel = diameterCable;
+    updateAssemblie.opmaak_aantal = maxLengthCable;
+    updateAssemblie.haspelgeschikt = haspelCable;
+    setAssemblies(updateAssemblie);
+    setSelectedAssemblie(updateAssemblie);
+  };
+
   const UpdateAssemblieConnA = (
     artnrConnA,
     detailsConnA,
@@ -151,6 +220,8 @@ export const Provider = (props) => {
     selectedAssemblie,
     setSelectedAssemblie,
     addNewAssemblie,
+    UpdateAssemblieCable,
+    UpdateAssemblieCableLength,
     UpdateAssemblieConnA,
     UpdateAssemblieConnB,
     UpdateAssemblieHaspel,
