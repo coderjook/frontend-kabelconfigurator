@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import {
   Dialog,
   DialogContent,
@@ -6,43 +7,34 @@ import {
   DialogShadow,
   DialogBanner,
   DialogBannerName,
-  ConfirmButton,
 } from "../../../Styles/DialogStyle";
-import { formatPrice } from "../../../Data/CableData";
-import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
+import { ProductDetails } from "../../../Styles/ProductGrid";
+import { ConfirmButton } from "../../../Styles/ButtonStyle";
 
-export function getPrice(order) {
-  return order.length * order.inkoopprijs;
-}
+let subPriceHaspel = null;
+const getPriceHaspel = (openHaspelDialog) => {
+  subPriceHaspel = openHaspelDialog.inkoopprijs / openHaspelDialog.prijsper;
+  return subPriceHaspel;
+};
 
 function HaspelDialogContainer({
   openHaspelDialog,
   setOpenHaspelDialog,
   closeShowHaspelGrid,
 }) {
-  const isEditing = openHaspelDialog.index > -1;
   const { UpdateAssemblieHaspel } = useContext(AssemblieContext);
 
   function close() {
     setOpenHaspelDialog();
   }
 
-  // function editOrder() {
-  //   const newOrders = [...orders];
-  //   newOrders[openHaspelDialog.index] = order;
-  //   setOrders(newOrders);
-  //   close();
-  // }
-
   function addToOrder() {
-    // setOrders([...orders, order]);
     close();
-    // updateCurrentHaspel(order);
     UpdateAssemblieHaspel(
       openHaspelDialog.artikelnummer,
       openHaspelDialog.typenummer,
       openHaspelDialog.type_haspel,
-      openHaspelDialog.inkoopprijs
+      subPriceHaspel
     );
     closeShowHaspelGrid();
   }
@@ -55,12 +47,28 @@ function HaspelDialogContainer({
           <DialogBannerName> {openHaspelDialog.typenummer} </DialogBannerName>
           <DialogBannerName> {openHaspelDialog.kabelgroep} </DialogBannerName>
         </DialogBanner>
-        <DialogContent>hier kom info over haspel</DialogContent>
+        <DialogContent>
+          <ProductDetails>
+            <div>artikelnummer: {openHaspelDialog.artikelnummer}</div>
+            <div>merk: {openHaspelDialog.merk}</div>
+            <div>
+              inkoopprijs: {openHaspelDialog.inkoopprijs} per{" "}
+              {openHaspelDialog.prijsper}
+            </div>
+            <div>breedte haspel: {openHaspelDialog.breedte_haspel}</div>
+            <div>
+              diameter kern haspel mm: {openHaspelDialog.diameter_kern_haspel}
+            </div>
+            <div>diameter haspel mm: {openHaspelDialog.diameter_haspel}</div>
+          </ProductDetails>
+          <ProductDetails>
+            <div>berekenprijs haspel: {getPriceHaspel(openHaspelDialog)}</div>
+          </ProductDetails>
+        </DialogContent>
         <DialogFooter>
           <ConfirmButton onClick={addToOrder}>
             selecteer deze haspel
           </ConfirmButton>
-          {/* <ConfirmButton onClick={addToOrder}>selecteer de kabel</ConfirmButton> */}
         </DialogFooter>
       </Dialog>
     </>

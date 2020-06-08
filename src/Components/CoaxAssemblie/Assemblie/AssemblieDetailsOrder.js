@@ -1,16 +1,17 @@
 import React, { useContext } from "react";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-import {
-  OrderStyled,
-  OrderTitle,
-  OrderContent,
-  OrderContainer,
-  OrderItem,
-  DetailItem,
-} from "../../../Styles/OrderStyle";
+import { OrderTitle, OrderItem, DetailItem } from "../../../Styles/OrderStyle";
 import { ConfirmButton } from "../../../Styles/ButtonStyle";
+import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
+import {
+  Product,
+  ProductGrid3,
+  ProductName,
+  ProductDetails,
+} from "../../../Styles/ProductGrid";
+import { ChangeButton } from "../../../Styles/ButtonStyle";
 
-function AssemblieDetails() {
+function AssemblieDetailsOrder() {
   // get the selectedAssemblie form the assemblieContext
   const { selectedAssemblie } = useContext(AssemblieContext);
 
@@ -22,9 +23,9 @@ function AssemblieDetails() {
     <>
       {selectedAssemblie ? (
         <>
-          <OrderStyled>
-            <OrderContent>
-              <OrderContainer>
+          <ProductStyled>
+            <ProductGrid3>
+              <div>
                 <div>AssemblieNR:{selectedAssemblie.assemblieID} </div>
 
                 <OrderTitle>
@@ -49,9 +50,9 @@ function AssemblieDetails() {
                     Geschikt voor haspel: {selectedAssemblie.haspelgeschikt}
                   </div>
                 </DetailItem>
-              </OrderContainer>
+              </div>
 
-              <OrderContainer>
+              <div>
                 <OrderTitle>
                   <div>Geselecteer Connector A:</div>
                 </OrderTitle>
@@ -79,8 +80,8 @@ function AssemblieDetails() {
                     {selectedAssemblie.artnr_afwerking_a}
                   </div>
                 </DetailItem>
-              </OrderContainer>
-              <OrderContainer>
+              </div>
+              <div>
                 <OrderTitle>
                   <div>Geselecteerde Connector B:</div>
                 </OrderTitle>
@@ -108,8 +109,8 @@ function AssemblieDetails() {
                     {selectedAssemblie.artnr_afwerking_b}
                   </div>
                 </DetailItem>
-              </OrderContainer>
-              <OrderContainer>
+              </div>
+              <div>
                 <OrderTitle>
                   <div>Geselecteerde Haspel:</div>
                 </OrderTitle>
@@ -123,8 +124,8 @@ function AssemblieDetails() {
                 <DetailItem>
                   <div>Prijs: {selectedAssemblie.prijshaspel} </div>
                 </DetailItem>
-              </OrderContainer>
-              <OrderContainer>
+              </div>
+              <div>
                 <OrderTitle>
                   <div>Geselecteerde Afwerking:</div>
                 </OrderTitle>
@@ -140,18 +141,18 @@ function AssemblieDetails() {
                     Lengte krimpkous: {selectedAssemblie.lengte_trans_krimp}{" "}
                   </div>
                 </DetailItem>
-              </OrderContainer>
-              <OrderContainer>
+              </div>
+              <div>
                 <ConfirmButton onClick={createOrder}>
                   Ga verder met assemblie
                 </ConfirmButton>
-              </OrderContainer>
-            </OrderContent>
-          </OrderStyled>
+              </div>
+            </ProductGrid3>
+          </ProductStyled>
         </>
       ) : null}
     </>
   );
 }
 
-export default AssemblieDetails;
+export default AssemblieDetailsOrder;

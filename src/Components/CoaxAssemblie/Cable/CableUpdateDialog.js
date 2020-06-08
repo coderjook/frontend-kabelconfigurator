@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 //hooks
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import { useLength } from "../../../Hooks/useLength";
@@ -66,11 +66,6 @@ function CableUpdateDialogContainer({
           <ProductDetails>
             <div>artikelnummer: {openCableUpdateDialog.artnr_kabel}</div>
             <div>merk: {openCableUpdateDialog.merk}</div>
-            {/* <div>
-              inkoopprijs: {openCableUpdateDialog.inkoopprijs} per{" "}
-              {openCableUpdateDialog.prijsper} meter
-            </div> */}
-
             <div>kabelgroep: {openCableUpdateDialog.kabelgroep_kabel}</div>
             <div>maximale lengte: {openCableUpdateDialog.opmaak_aantal}</div>
             <div>

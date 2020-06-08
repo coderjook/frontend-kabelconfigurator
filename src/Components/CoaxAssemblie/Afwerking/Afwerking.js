@@ -1,11 +1,14 @@
 import React, { useState, useContext } from "react";
+//hooks
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-import { ConfirmButton } from "../../../Styles/DialogStyle";
-import { ProductHeader, ProductContent } from "../../../Styles/ProductStyle";
 import { useToggleContent } from "../../../Hooks/useToggleContent";
+//styles
+import { ConfirmButton } from "../../../Styles/ButtonStyle";
+import { ProductHeader } from "../../../Styles/ProductStyle";
 import { ProductStyled } from "../../../Styles/ProductStyle";
+import { ProductGrid2 } from "../../../Styles/ProductGrid";
 
-function Afwerking({ orders, setOrders }) {
+function Afwerking() {
   const toggleContent = useToggleContent();
   const [transKrimpkous, setTransKrimpkous] = useState("geen");
   const [lengthTransKrimpkous, setLengthTransKrimpkous] = useState(1);
@@ -21,15 +24,9 @@ function Afwerking({ orders, setOrders }) {
     setLengthTransKrimpkous(event.target.value);
   };
 
-  // const order = {
-  //   assemblieItem: "afwerking",
-  //   transKrimpkous: transKrimpkous,
-  //   lengthTransKrimpkous: lengthTransKrimpkous,
-  // };
-
   function addToOrder() {
-    // setOrders([...orders, order]);
     UpdateAssemblieAfwerking(lengthTransKrimpkous, transKrimpkous);
+    toggleContent.toggleShowContent();
   }
 
   return (
@@ -60,14 +57,15 @@ function Afwerking({ orders, setOrders }) {
           </ProductHeader>
         </>
       )}
-      ;
+
       {toggleContent.toggleContent ? (
         <>
           <ProductStyled>
-            <ProductContent>
-              <div>
-                <h3> Kies de afwerking:</h3>
-              </div>
+            <div>
+              <h3> Kies de afwerking:</h3>
+            </div>
+
+            <ProductGrid2>
               <div>
                 <div>
                   <input
@@ -120,9 +118,9 @@ function Afwerking({ orders, setOrders }) {
                   </label>
                 </div>{" "}
               </div>
-              <p>
+              <div>
                 {transKrimpkous === "geen" ? (
-                  <p>geen transparante krimpkous</p>
+                  <div>geen transparante krimpkous</div>
                 ) : (
                   <div>
                     Lengte transparante krimpkous cm
@@ -135,16 +133,16 @@ function Afwerking({ orders, setOrders }) {
                     />
                   </div>
                 )}
-              </p>
-
-              <ConfirmButton onClick={addToOrder}>
-                selecteer de afwerking
-              </ConfirmButton>
-            </ProductContent>
+              </div>
+              <div>
+                <ConfirmButton onClick={addToOrder}>
+                  selecteer de afwerking
+                </ConfirmButton>
+              </div>
+            </ProductGrid2>
           </ProductStyled>
         </>
       ) : null}
-      ;
     </>
   );
 }

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { ProductLabel } from "./ProductGrid";
 import { romalOranje } from "../Styles/colors";
-import { title } from "../Styles/title";
-//import { Dialog, DialogContent, DialogFooter, DialogShadow, DialogBanner, DialogBannerName, ConfirmButton } from "../Assemblie/useAssemblie";
 
 export const Dialog = styled.div`
   width: 500px;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
+import haspelImg from "../../../Assets/Images/haspel.jpg";
 import { ProductStyled } from "../../../Styles/ProductStyle";
 import {
   Product,
@@ -38,7 +38,7 @@ export const HaspelDb = ({ setOpenHaspelDialog }) => {
                   setOpenHaspelDialog(haspel);
                 }}
               >
-                {/* <ProductImg img={haspel.img} /> */}
+                <ProductImg img={haspelImg} />
                 <ProductName>
                   <div>{haspel.typenummer}</div>
                 </ProductName>

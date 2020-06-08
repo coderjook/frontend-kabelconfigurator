@@ -3,11 +3,12 @@ import { romalBlauw, romalLichtBlauw } from "./colors";
 import { DialogContent } from "./DialogStyle";
 
 export const OrderStyled = styled.div`
+  overflow: auto;
   position: fixed;
   right: 0px;
   top: 100px;
   width: 340px;
-  height: calc(100% - 48px);
+  height: calc(100% - 100px);
   z-index: 10;
   box-shadow: 4px 0px 5px 4px grey;
   background-color: white;
@@ -22,17 +23,6 @@ export const OrderContent = styled(DialogContent)`
 export const OrderContainer = styled.div`
   padding: 10px 0px;
   border-bottom: 1px solid grey;
-  ${({ editable }) =>
-    editable
-      ? `
-    &:hover {
-      cursor: pointer;
-      background-color: #F6F8FA;
-    }
-  `
-      : `
-    pointer-events: none; 
-  `}
 `;
 
 export const OrderTitle = styled.div`
@@ -49,7 +39,7 @@ export const OrderTitle = styled.div`
 export const OrderItem = styled.div`
   padding: 3px 0px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   justify-content: space-between;
 `;
 

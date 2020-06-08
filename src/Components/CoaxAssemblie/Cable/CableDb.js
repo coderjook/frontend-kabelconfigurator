@@ -59,7 +59,6 @@ export const CableDb = ({ setOpenCableDialog, cableStatus }) => {
               </Product>
             );
           })}
-          ;
         </ProductGrid>
       </ProductStyled>
     </>

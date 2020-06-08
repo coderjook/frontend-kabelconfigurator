@@ -14,13 +14,24 @@ export const ProductGrid3 = styled.div`
   grid-template-columns: 2fr 2fr 1fr;
   justify-items: start;
   row-gap: 5px;
-  column-gap: 5px;
+  column-gap: 10px;
 
   padding-bottom: 20px;
   // padding-left: 20px;
   margin-left: 20px;
 `;
 
+export const ProductGrid2 = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: start;
+  row-gap: 5px;
+  column-gap: 10px;
+
+  padding-bottom: 20px;
+  // padding-left: 20px;
+  margin-left: 20px;
+`;
 export const ProductLabel = styled.div`
   position: absolute;
   background-color: rgba(255, 255, 255, 0.8);

@@ -1,22 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import { useOpenHaspelDialog } from "../../../Hooks/useOpenHaspelDialog";
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-import {
-  ProductHeader,
-  ProductContent,
-  ProductStyled,
-} from "../../../Styles/ProductStyle";
-import HaspelGrid from "./HaspelGrid";
 import { HaspelDb } from "./HaspelDb";
 import { HaspelDialog } from "./HaspelDialog";
-import { useOpenHaspelDialog } from "../../../Hooks/useOpenHaspelDialog";
-import { ConfirmButton } from "../../../Styles/DialogStyle";
-import { ChangeButton } from "../../../Styles/ButtonStyle";
+import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
+import { ConfirmButton } from "../../../Styles/ButtonStyle";
 import {
   Product,
   ProductGrid3,
-  ProductImg,
   ProductName,
   ProductDetails,
 } from "../../../Styles/ProductGrid";
@@ -32,13 +25,13 @@ const ProductContentCheck = styled.div`
   font-size: 18px;
 `;
 
-function Haspel({ ...orders }) {
+function Haspel() {
   const { selectedAssemblie, UpdateAssemblieHaspel } = useContext(
     AssemblieContext
   );
   const openHaspel = useOpenHaspelDialog();
   const toggleContent = useToggleContent(false);
-  const [showHaspelGrid, setShowHaspelGrid] = useState(false);
+  // const [showHaspelGrid, setShowHaspelGrid] = useState(false);
   const [opmaakHaspel, setOpmaakHaspel] = useState("gebonden");
 
   const handleChange = (event) => {
@@ -103,13 +96,7 @@ function Haspel({ ...orders }) {
                     </ProductDetails>
                   </Product>
                 </div>
-                <div>
-                  <Product>
-                    <ChangeButton onClick={() => setShowHaspelGrid(true)}>
-                      selecteer een andere haspel
-                    </ChangeButton>
-                  </Product>
-                </div>
+                <div></div>
                 <div />
               </ProductGrid3>
             </ProductStyled>
@@ -155,7 +142,6 @@ function Haspel({ ...orders }) {
           ) : null}
           {opmaakHaspel === "haspel" ? (
             <>
-              <HaspelGrid {...openHaspel} />
               <HaspelDb {...openHaspel} />
             </>
           ) : null}
@@ -163,7 +149,6 @@ function Haspel({ ...orders }) {
       ) : null}
       <HaspelDialog
         {...openHaspel}
-        {...orders}
         closeShowHaspelGrid={() => toggleContent.setToggleContent(false)}
       />
     </>
