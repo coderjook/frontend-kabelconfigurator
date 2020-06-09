@@ -47,7 +47,11 @@ function ConnectorDialogContainer({
     AssemblieContext
   );
 
-  const tuleOrder = tuleState ? `${tuleState}` : null;
+  const tuleOrder = tuleState
+    ? `${tuleState}`
+    : installationRadio.value === "geen"
+    ? 0
+    : 10593;
 
   function close() {
     setOpenConnectorDialog();

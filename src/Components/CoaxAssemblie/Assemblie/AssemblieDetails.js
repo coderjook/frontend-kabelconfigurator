@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
+import { makePostRequestAssemblie } from "../../../DataDb/PostRequestAssemblie";
 import {
   OrderStyled,
   OrderTitle,
@@ -15,7 +16,21 @@ function AssemblieDetails() {
   const { selectedAssemblie } = useContext(AssemblieContext);
 
   function createOrder() {
-    console.log("ga verder met de order", selectedAssemblie);
+    const params = {
+      // id_assemblie: selectedAssemblie.assemblieID,
+      artnr_kabel: selectedAssemblie.artnr_kabel,
+      lengte_kabel: selectedAssemblie.lengte_kabel,
+      artnr_connector_a: selectedAssemblie.artnr_connector_a,
+      artnr_connector_b: selectedAssemblie.artnr_connector_b,
+      artnr_afw_conn_a: selectedAssemblie.artnr_afwerking_a,
+      artnr_afw_conn_b: selectedAssemblie.artnr_afwerking_b,
+      artnr_haspel: selectedAssemblie.artnr_haspel,
+      trans_krimp: selectedAssemblie.trans_krimp,
+      lengte_trans_krimp: selectedAssemblie.lengte_trans_krimp,
+    };
+
+    makePostRequestAssemblie(params);
+    console.log("ga verder met de order", params.id_assemblie);
   }
 
   return (

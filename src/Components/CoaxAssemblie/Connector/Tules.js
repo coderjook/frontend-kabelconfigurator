@@ -29,8 +29,8 @@ function Tules(props) {
                 type="radio"
                 id={tule.artikelnummer}
                 name={tule.typenummer}
-                value={tule.typenummer}
-                checked={props.tuleOrder === tule.typenummer}
+                value={tule.artikelnummer}
+                checked={props.tuleOrder === tule.artikelnummer}
                 onChange={(e) => props.onChange(e.target.value)}
               />
               <label for={tule.typenummer}>{tule.typenummer}</label>

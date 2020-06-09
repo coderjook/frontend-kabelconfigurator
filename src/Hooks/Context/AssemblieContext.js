@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export const Context = createContext({});
 
@@ -28,7 +29,7 @@ export const Provider = (props) => {
     haspelCable
   ) => {
     const newAssemblie = {
-      assemblieID: new Date().getTime().toString(),
+      assemblieID: uuidv4(),
       artnr_kabel: artnrCable,
       details_kabel: detailsCable,
       lengte_kabel: lengthCable,
