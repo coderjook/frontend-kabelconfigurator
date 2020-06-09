@@ -17,7 +17,7 @@ function AssemblieDetails() {
 
   function createOrder() {
     const params = {
-      // id_assemblie: selectedAssemblie.assemblieID,
+      // id_assemblie: selectedAssemblie.assemblieID, UUID wordt aangemaakt in db
       artnr_kabel: selectedAssemblie.artnr_kabel,
       lengte_kabel: selectedAssemblie.lengte_kabel,
       artnr_connector_a: selectedAssemblie.artnr_connector_a,
@@ -54,7 +54,7 @@ function AssemblieDetails() {
                   <div>Kabelgroep: {selectedAssemblie.kabelgroep_kabel}</div>
                 </DetailItem>
                 <DetailItem>
-                  <div>Prijs: {selectedAssemblie.prijs_kabel}</div>
+                  <div>Materiaalkosten: {selectedAssemblie.prijs_kabel}</div>
 
                   <div>Diameter: {selectedAssemblie.diameter_buitenmantel}</div>
                 </DetailItem>
@@ -83,7 +83,9 @@ function AssemblieDetails() {
                   <div>
                     Assemblage: {selectedAssemblie.assemblage_connector_a}
                   </div>
-                  <div>Prijs: {selectedAssemblie.prijs_connector_a}</div>
+                  <div>
+                    Materiaalkosten: {selectedAssemblie.prijs_connector_a}
+                  </div>
                 </DetailItem>
                 <DetailItem>
                   <div>
@@ -136,7 +138,7 @@ function AssemblieDetails() {
                   <div>Artikelnummer: {selectedAssemblie.artnr_haspel} </div>
                 </DetailItem>
                 <DetailItem>
-                  <div>Prijs: {selectedAssemblie.prijshaspel} </div>
+                  <div>Materiaalkosten: {selectedAssemblie.prijshaspel} </div>
                 </DetailItem>
               </OrderContainer>
               <OrderContainer>
@@ -154,6 +156,7 @@ function AssemblieDetails() {
                   <div>
                     Lengte krimpkous: {selectedAssemblie.lengte_trans_krimp}{" "}
                   </div>
+                  <div>Materiaalkosten: {selectedAssemblie.prijs_krimp} </div>
                 </DetailItem>
               </OrderContainer>
               <OrderContainer>

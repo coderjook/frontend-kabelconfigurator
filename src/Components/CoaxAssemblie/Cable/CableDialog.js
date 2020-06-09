@@ -79,7 +79,8 @@ function CableDialogContainer({
           <CableLengthInput cableLength={cableLength} />
           <ProductDetails>
             <div>
-              berekenprijs kabel: {getPriceCable(openCableDialog, cableLength)}
+              materiaalkosten kabel:{" "}
+              {getPriceCable(openCableDialog, cableLength)}
             </div>
           </ProductDetails>
         </DialogContent>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { romalBlauw, romalLichtBlauw } from "./colors";
+import { romalBlauw, romalLichtBlauw, romalOranje } from "./colors";
 import { DialogContent } from "./DialogStyle";
 
 export const OrderStyled = styled.div`
@@ -49,4 +49,16 @@ export const DetailItem = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
+`;
+
+export const OrderGrid2 = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  justify-items: start;
+  row-gap: 2px;
+  column-gap: 10px;
+  border-bottom: 1px solid ${romalOranje};
+
+  padding: 10px;
+  margin-left: 20px;
 `;

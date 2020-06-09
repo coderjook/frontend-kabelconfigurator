@@ -62,7 +62,9 @@ function HaspelDialogContainer({
             <div>diameter haspel mm: {openHaspelDialog.diameter_haspel}</div>
           </ProductDetails>
           <ProductDetails>
-            <div>berekenprijs haspel: {getPriceHaspel(openHaspelDialog)}</div>
+            <div>
+              materiaalkosten haspel: {getPriceHaspel(openHaspelDialog)}
+            </div>
           </ProductDetails>
         </DialogContent>
         <DialogFooter>

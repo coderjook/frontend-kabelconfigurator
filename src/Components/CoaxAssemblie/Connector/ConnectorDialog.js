@@ -27,13 +27,6 @@ const Label = styled.label`
   ${CursorPointer}
 `;
 
-let subPriceConnector = null;
-const getPriceConnector = (openConnectorDialog, tuleOrder) => {
-  subPriceConnector =
-    openConnectorDialog.inkoopprijs / openConnectorDialog.prijsper;
-  return subPriceConnector;
-};
-
 function ConnectorDialogContainer({
   closeShowConnectorGrid,
   openConnectorDialog,
@@ -52,6 +45,18 @@ function ConnectorDialogContainer({
     : installationRadio.value === "geen"
     ? 0
     : 10593;
+
+  const installation = installationRadio.value;
+
+  let subPriceConnector = null;
+  const getPriceConnector = (openConnectorDialog, installation) => {
+    const priceConnector =
+      openConnectorDialog.inkoopprijs / openConnectorDialog.prijsper;
+    const priceInstallation = installation === "geen" ? 0 : 0.25;
+    subPriceConnector = priceConnector + priceInstallation;
+    console.log("inst", priceInstallation);
+    return subPriceConnector;
+  };
 
   function close() {
     setOpenConnectorDialog();
@@ -74,7 +79,7 @@ function ConnectorDialogContainer({
         openConnectorDialog.typenummer,
         openConnectorDialog.connectortype,
         openConnectorDialog.assemblage,
-        openConnectorDialog.inkoopprijs,
+        subPriceConnector,
         installationRadio.value,
         tuleOrder
       );
@@ -144,8 +149,8 @@ function ConnectorDialogContainer({
           ) : null}
           <ProductDetails>
             <div>
-              berekenprijs connector:{" "}
-              {getPriceConnector(openConnectorDialog, tuleOrder)}
+              materiaalkosten connector:{" "}
+              {getPriceConnector(openConnectorDialog, installation)}
             </div>
           </ProductDetails>
         </DialogContent>

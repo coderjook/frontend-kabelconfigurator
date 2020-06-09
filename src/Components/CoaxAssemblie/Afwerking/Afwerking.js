@@ -24,8 +24,15 @@ function Afwerking() {
     setLengthTransKrimpkous(event.target.value);
   };
 
+  const prijs_krimp =
+    transKrimpkous === "beideKanten"
+      ? 0.5
+      : transKrimpkous === "geen"
+      ? 0
+      : 0.25;
+
   function addToOrder() {
-    UpdateAssemblieAfwerking(lengthTransKrimpkous, transKrimpkous);
+    UpdateAssemblieAfwerking(lengthTransKrimpkous, transKrimpkous, prijs_krimp);
     toggleContent.toggleShowContent();
   }
 
@@ -134,6 +141,7 @@ function Afwerking() {
                   </div>
                 )}
               </div>
+              <div>materiaalkosten transparante krimpkous: {prijs_krimp}</div>
               <div>
                 <ConfirmButton onClick={addToOrder}>
                   selecteer de afwerking

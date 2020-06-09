@@ -62,6 +62,7 @@ export const Provider = (props) => {
 
       trans_krimp: "kies afwerking",
       lengte_trans_krimp: 0,
+      prijs_krimp: 0,
       artnr_trans_krimp: defaultArtnr,
     };
     setAssemblies(newAssemblie);
@@ -203,12 +204,13 @@ export const Provider = (props) => {
     setSelectedAssemblie(updateAssemblie);
   };
 
-  const UpdateAssemblieAfwerking = (lengthKrimp, transKrimp) => {
+  const UpdateAssemblieAfwerking = (lengthKrimp, transKrimp, prijs_krimp) => {
     const updateAssemblie = {
       ...assemblies,
     };
     updateAssemblie.trans_krimp = transKrimp;
     updateAssemblie.lengte_trans_krimp = lengthKrimp;
+    updateAssemblie.prijs_krimp = prijs_krimp;
     // updateAssemblie.artnr_trans_krimp = artnrKrimp;
     setAssemblies(updateAssemblie);
     setSelectedAssemblie(updateAssemblie);
