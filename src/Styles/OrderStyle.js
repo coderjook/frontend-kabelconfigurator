@@ -20,6 +20,10 @@ export const OrderContent = styled(DialogContent)`
   height: 100%;
 `;
 
+export const DetailsOrderStyled = styled.div`
+  margin: 0px 20px 0px 20px;
+`;
+
 export const OrderContainer = styled.div`
   padding: 10px 0px;
   border-bottom: 1px solid grey;
@@ -51,14 +55,13 @@ export const DetailItem = styled.div`
   justify-content: space-between;
 `;
 
-export const OrderGrid2 = styled.div`
+export const DetailsOrderGrid3 = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 3fr 2fr;
   justify-items: start;
   row-gap: 2px;
   column-gap: 10px;
   border-bottom: 1px solid ${romalOranje};
-
-  padding: 10px;
+  padding: 5px;
   margin-left: 20px;
 `;

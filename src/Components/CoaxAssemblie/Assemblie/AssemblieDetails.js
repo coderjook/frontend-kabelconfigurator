@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "@reach/router";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import { makePostRequestAssemblie } from "../../../DataDb/PostRequestAssemblie";
 import {
@@ -160,9 +161,11 @@ function AssemblieDetails() {
                 </DetailItem>
               </OrderContainer>
               <OrderContainer>
-                <ConfirmButton onClick={createOrder}>
-                  Ga verder met assemblie
-                </ConfirmButton>
+                <Link to="detailsOrder">
+                  <ConfirmButton onClick={createOrder}>
+                    Ga verder met assemblie
+                  </ConfirmButton>
+                </Link>
               </OrderContainer>
             </OrderContent>
           </OrderStyled>

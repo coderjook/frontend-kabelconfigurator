@@ -1,30 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { Link } from "@reach/router";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import {
   OrderTitle,
-  OrderGrid2,
-  OrderItem,
-  DetailItem,
+  DetailsOrderGrid3,
+  DetailsOrderStyled,
 } from "../../../Styles/OrderStyle";
 import { ConfirmButton } from "../../../Styles/ButtonStyle";
-// import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
-// import {
-//   Product,
-//   div,
-//   ProductName,
-//   ProductDetails,
-// } from "../../../Styles/ProductGrid";
-// import { ChangeButton } from "../../../Styles/ButtonStyle";
-import { ProductStyled } from "../../../Styles/ProductStyle";
 
 let subPriceMaterial = null;
-const getSubPriceMaterial = (selectedAssemblie) => {
+const getSubPriceMaterial = (selectedAssemblie, aantalAssemblies) => {
   subPriceMaterial =
-    selectedAssemblie.prijs_kabel +
-    selectedAssemblie.prijs_connector_a +
-    selectedAssemblie.prijs_connector_b +
-    selectedAssemblie.prijshaspel +
-    selectedAssemblie.prijs_krimp;
+    (selectedAssemblie.prijs_kabel +
+      selectedAssemblie.prijs_connector_a +
+      selectedAssemblie.prijs_connector_b +
+      selectedAssemblie.prijshaspel +
+      selectedAssemblie.prijs_krimp) *
+    aantalAssemblies;
 
   return subPriceMaterial;
 };
@@ -37,80 +29,128 @@ const getTotalPriceMaterial = (subPriceMaterial, margePriceMaterial) => {
 };
 
 function AssemblieDetailsOrder() {
-  // get the selectedAssemblie form the assemblieContext
+  const [aantalAssemblies, setAantalAssemblies] = useState(1);
+  const [spoelkosten, setSpoelkosten] = useState(0.1);
+  const [instelkostenBos, setInstelkostenBos] = useState(1);
+  const [kostenConnectors, setKostenConnector] = useState(1);
+  const [instelkostenHapsel, setInstelkostenHaspel] = useState(1);
   const { selectedAssemblie } = useContext(AssemblieContext);
+
+  const handleChange = (event) => {
+    setAantalAssemblies(event.target.value);
+    calcArbeid();
+  };
+
+  const calcArbeid = () => {
+    const spoel = 0.1 * aantalAssemblies * selectedAssemblie.lengte_kabel;
+    setSpoelkosten(spoel);
+    const instelBos = 25 * aantalAssemblies;
+    setInstelkostenBos(instelBos);
+    const aantConnector =
+      selectedAssemblie.artnr_connector_b === 999999 ? 1 : 2;
+    const kostConnector = aantConnector * aantalAssemblies * 2;
+    setKostenConnector(kostConnector);
+    return { spoelkosten, instelkostenBos, kostenConnectors };
+  };
+
+  // const calcSpoel = (aantalAssemblies) => {
+  //   const spoel = 0.1 * aantalAssemblies * selectedAssemblie.lengte_kabel;
+  //   setSpoelkosten(spoel);
+  //   return spoelkosten;
+  // };
+
+  // const calcInstel = (aantalAssemblies) => {
+  //   const instelBos = 25 * aantalAssemblies;
+  //   setInstelkostenBos(instelBos);
+  // };
 
   return (
     <>
+      <Link to="/">
+        <div>Maak een nieuwe assemblie aan</div>
+      </Link>
       {selectedAssemblie ? (
         <>
-          <ProductStyled>
-            <OrderGrid2>
+          <DetailsOrderStyled>
+            <DetailsOrderGrid3>
               <div>
                 <h3>AssemblieNR:{selectedAssemblie.assemblieID} </h3>{" "}
               </div>
               <div>
                 <h3>Aantal stuks: </h3>
-                <input type="text" />
+                <input
+                  type="text"
+                  id="aantAssemblie"
+                  name="aantAssemblie"
+                  value={aantalAssemblies}
+                  onChange={handleChange}
+                />
+                <button onClick={calcArbeid}> klik</button>
               </div>
-            </OrderGrid2>
+            </DetailsOrderGrid3>
 
             <OrderTitle>
-              <div>Opbouwmateriaalkosten kabel:</div>
+              <DetailsOrderGrid3>
+                <div>Opbouwmateriaalkosten kabel:</div>
+                <div />
+              </DetailsOrderGrid3>
             </OrderTitle>
-            <OrderGrid2>
+            <DetailsOrderGrid3>
+              <div>Kabel:</div>
               <div>
-                Kabel:
-                <br /> <b>{selectedAssemblie.artnr_kabel}</b> |{" "}
                 {selectedAssemblie.details_kabel} lengte:{" "}
                 {selectedAssemblie.lengte_kabel} meter
               </div>
               <div>{selectedAssemblie.prijs_kabel}</div>
-            </OrderGrid2>
+            </DetailsOrderGrid3>
 
-            <OrderGrid2>
+            <DetailsOrderGrid3>
+              <div>Connector kant A:</div>
               <div>
-                Connector kant A:
-                <br /> <b>{selectedAssemblie.artnr_connector_a}</b> |{" "}
+                <b>{selectedAssemblie.artnr_connector_a}</b> |{" "}
                 {selectedAssemblie.details_connector_a} Afwerking product:{" "}
                 {selectedAssemblie.afwerking_connector_a}
               </div>
               <div>{selectedAssemblie.prijs_connector_a}</div>
-            </OrderGrid2>
+            </DetailsOrderGrid3>
 
-            <OrderGrid2>
+            <DetailsOrderGrid3>
+              <div>Connector kant B:</div>
               <div>
-                Connector kant B:
-                <br /> <b>{selectedAssemblie.artnr_connector_b}</b> |{" "}
+                <b>{selectedAssemblie.artnr_connector_b}</b> |{" "}
                 {selectedAssemblie.details_connector_b} Afwerking product:{" "}
                 {selectedAssemblie.afwerking_connector_b}
               </div>
               <div>{selectedAssemblie.prijs_connector_b}</div>
-            </OrderGrid2>
+            </DetailsOrderGrid3>
 
-            <OrderGrid2>
+            <DetailsOrderGrid3>
+              <div>Haspel:</div>
               <div>
                 {" "}
-                Haspel:
-                <br /> <b>{selectedAssemblie.artnr_haspel}</b> |{" "}
+                <b>{selectedAssemblie.artnr_haspel}</b> |{" "}
                 {selectedAssemblie.details_haspel}{" "}
               </div>
-              <div>:{selectedAssemblie.prijshaspel}</div>
-            </OrderGrid2>
+              <div>{selectedAssemblie.prijshaspel}</div>
+            </DetailsOrderGrid3>
 
-            <OrderGrid2>
+            <DetailsOrderGrid3>
+              <div>Afwerking:</div>
               <div>
-                Afwerking:
-                <br /> {selectedAssemblie.trans_krimp} Lengte krimpkous:{" "}
+                {selectedAssemblie.trans_krimp} Lengte krimpkous:{" "}
                 {selectedAssemblie.lengte_trans_krimp}{" "}
               </div>
               <div>{selectedAssemblie.prijs_krimp}</div>
-            </OrderGrid2>
+            </DetailsOrderGrid3>
 
             <OrderTitle>
-              <OrderGrid2>
+              <DetailsOrderGrid3>
+                <div />
                 <div>subtotaal materiaalkosten Assemblie: </div>
-                <div>{getSubPriceMaterial(selectedAssemblie)}</div>
+                <div>
+                  {getSubPriceMaterial(selectedAssemblie, aantalAssemblies)}
+                </div>
+                <div />
                 <div>
                   <b>
                     Totaal materiaalkosten Assemblie (marge:{" "}
@@ -126,11 +166,71 @@ function AssemblieDetailsOrder() {
                     )}
                   </b>
                 </div>
-              </OrderGrid2>
+              </DetailsOrderGrid3>
             </OrderTitle>
-          </ProductStyled>
+          </DetailsOrderStyled>
+
+          <DetailsOrderStyled>
+            <OrderTitle>
+              <DetailsOrderGrid3>
+                <div>arbeidskosten assemblie op bos:</div>
+                <div />
+              </DetailsOrderGrid3>
+            </OrderTitle>
+            <DetailsOrderGrid3>
+              <div>Spoelkosten:</div>
+              <div>
+                {selectedAssemblie.lengte_kabel} meter kabel *{" "}
+                {aantalAssemblies} assemblie(s) x 0.10
+              </div>
+              <div>{spoelkosten}</div>
+            </DetailsOrderGrid3>
+
+            <DetailsOrderGrid3>
+              <div>Instelkosten:</div>
+              <div>{aantalAssemblies} assemblie(s) x 25.00</div>
+              <div>{instelkostenBos}</div>
+            </DetailsOrderGrid3>
+
+            <DetailsOrderGrid3>
+              <div>Aanzetkosten connectoren</div>
+              <div>
+                {selectedAssemblie.artnr_connector_b === 999999
+                  ? "1 connector"
+                  : "2 connectoren"}{" "}
+                x {aantalAssemblies} assemblie(s) x 2.00
+              </div>
+              <div>{kostenConnectors}</div>
+            </DetailsOrderGrid3>
+
+            <OrderTitle>
+              <DetailsOrderGrid3>
+                <div />
+                <div>subtotaal arbeidkosten Assemblie: </div>
+                <div></div>
+                <div />
+                <div>
+                  <b>
+                    Totaal arbeidskosten Assemblie op bos (marge:{" "}
+                    {margePriceMaterial}
+                    ):{" "}
+                  </b>
+                </div>
+                <div>
+                  <b>
+                    {getTotalPriceMaterial(
+                      subPriceMaterial,
+                      margePriceMaterial
+                    )}
+                  </b>
+                </div>
+              </DetailsOrderGrid3>
+            </OrderTitle>
+          </DetailsOrderStyled>
         </>
-      ) : null}
+      ) : (
+        <div>ik zie bijna niks</div>
+      )}
     </>
   );
 }
