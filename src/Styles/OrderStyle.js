@@ -6,7 +6,7 @@ export const OrderStyled = styled.div`
   overflow: auto;
   position: fixed;
   right: 0px;
-  top: 100px;
+  top: 50px;
   width: 340px;
   height: calc(100% - 100px);
   z-index: 10;

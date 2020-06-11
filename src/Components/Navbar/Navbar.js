@@ -14,7 +14,7 @@ const NavbarStyled = styled.div`
 
 const Logo = styled(title)`
   display: inline;
-  font-size: 50px;
+  font-size: 30px;
   padding-left: 20px;
   color: white;
   text-shadow: 1px 1px 4px grey;
@@ -24,9 +24,9 @@ export function Navbar() {
   return (
     <NavbarStyled>
       <Logo>
-        <img src={Romallogo} alt="romal-logo" />
+        <img src={Romallogo} alt="romal-logo" height="60px" />
       </Logo>
-      <Logo>KABELCONFIGURATOR</Logo>
+      <Logo>COAX KABELCONFIGURATOR</Logo>
     </NavbarStyled>
   );
 }
