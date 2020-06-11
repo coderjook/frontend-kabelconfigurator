@@ -48,122 +48,153 @@ function AssemblieDetails() {
                 </OrderTitle>
                 <OrderItem>
                   <div>{selectedAssemblie.details_kabel} </div>
-                  <div>Lengte: {selectedAssemblie.lengte_kabel} meter</div>
                 </OrderItem>
                 <DetailItem>
                   <div>Artikelnummer: {selectedAssemblie.artnr_kabel} </div>
-                  <div>Kabelgroep: {selectedAssemblie.kabelgroep_kabel}</div>
+                  <div>Lengte: {selectedAssemblie.lengte_kabel} meter</div>
                 </DetailItem>
                 <DetailItem>
                   <div>Materiaalkosten: {selectedAssemblie.prijs_kabel}</div>
-
                   <div>Diameter: {selectedAssemblie.diameter_buitenmantel}</div>
                 </DetailItem>
-                <DetailItem>
-                  <div>Maximale lengte: {selectedAssemblie.opmaak_aantal}</div>
-                  <div>
-                    Geschikt voor haspel: {selectedAssemblie.haspelgeschikt}
-                  </div>
-                </DetailItem>
               </OrderContainer>
 
               <OrderContainer>
-                <OrderTitle>
-                  <div>Geselecteer Connector A:</div>
-                </OrderTitle>
-                <OrderItem>
-                  <div>{selectedAssemblie.details_connector_a} </div>
-                </OrderItem>
-                <DetailItem>
-                  <div>
-                    Artikelnummer: {selectedAssemblie.artnr_connector_a}
-                  </div>
-                  <div>Type: {selectedAssemblie.type_connector_a}</div>
-                </DetailItem>
-                <DetailItem>
-                  <div>
-                    Assemblage: {selectedAssemblie.assemblage_connector_a}
-                  </div>
-                  <div>
-                    Materiaalkosten: {selectedAssemblie.prijs_connector_a}
-                  </div>
-                </DetailItem>
-                <DetailItem>
-                  <div>
-                    Afwerking product: {selectedAssemblie.afwerking_connector_a}
-                  </div>
-                  <div>
-                    Afwerking artikelnummer:{" "}
-                    {selectedAssemblie.artnr_afwerking_a}
-                  </div>
-                </DetailItem>
+                {selectedAssemblie.artnr_connector_a === 999999 ? (
+                  <>
+                    {" "}
+                    <OrderTitle>
+                      <div>Geen Connector aan kant A geselecteerd:</div>
+                    </OrderTitle>{" "}
+                  </>
+                ) : (
+                  <>
+                    <OrderTitle>
+                      <div>Connector kant A:</div>
+                    </OrderTitle>
+                    <OrderItem>
+                      <div>{selectedAssemblie.details_connector_a} </div>
+                    </OrderItem>
+                    <DetailItem>
+                      <div>
+                        Artikelnummer: {selectedAssemblie.artnr_connector_a}
+                      </div>
+                      <div>
+                        Materiaalkosten: {selectedAssemblie.prijs_connector_a}
+                      </div>
+                    </DetailItem>
+                    <DetailItem>
+                      <div>
+                        Afwerking product:{" "}
+                        {selectedAssemblie.afwerking_connector_a}
+                      </div>
+                      <div>
+                        Afwerking artikelnummer:{" "}
+                        {selectedAssemblie.artnr_afwerking_a}
+                      </div>
+                    </DetailItem>
+                  </>
+                )}
               </OrderContainer>
+
               <OrderContainer>
-                <OrderTitle>
-                  <div>Geselecteerde Connector B:</div>
-                </OrderTitle>
-                <OrderItem>
-                  <div>{selectedAssemblie.details_connector_b} </div>
-                </OrderItem>
-                <DetailItem>
-                  <div>
-                    Artikelnummer: {selectedAssemblie.artnr_connector_b}
-                  </div>
-                  <div>Type: {selectedAssemblie.type_connector_b}</div>
-                </DetailItem>
-                <DetailItem>
-                  <div>
-                    Assemblage: {selectedAssemblie.assemblage_connector_b}
-                  </div>
-                  <div>Prijs: {selectedAssemblie.prijs_connector_b}</div>
-                </DetailItem>
-                <DetailItem>
-                  <div>
-                    Afwerking product: {selectedAssemblie.afwerking_connector_b}
-                  </div>
-                  <div>
-                    Afwerking artikelnummer:{" "}
-                    {selectedAssemblie.artnr_afwerking_b}
-                  </div>
-                </DetailItem>
+                {selectedAssemblie.artnr_connector_b === 999999 ? (
+                  <>
+                    {" "}
+                    <OrderTitle>
+                      <div>Geen Connector aan kant B geselecteerd:</div>
+                    </OrderTitle>{" "}
+                  </>
+                ) : (
+                  <>
+                    <OrderTitle>
+                      <div>Connector kant B:</div>
+                    </OrderTitle>
+                    <OrderItem>
+                      <div>{selectedAssemblie.details_connector_b} </div>
+                    </OrderItem>
+                    <DetailItem>
+                      <div>
+                        Artikelnummer: {selectedAssemblie.artnr_connector_b}
+                      </div>
+                      <div>
+                        Materiaalkosten: {selectedAssemblie.prijs_connector_b}
+                      </div>
+                    </DetailItem>
+                    <DetailItem>
+                      <div>
+                        Afwerking product:{" "}
+                        {selectedAssemblie.afwerking_connector_b}
+                      </div>
+                      <div>
+                        Afwerking artikelnummer:{" "}
+                        {selectedAssemblie.artnr_afwerking_b}
+                      </div>
+                    </DetailItem>
+                  </>
+                )}
               </OrderContainer>
+
               <OrderContainer>
-                <OrderTitle>
-                  <div>Geselecteerde Haspel:</div>
-                </OrderTitle>
-                <OrderItem>
-                  <div>{selectedAssemblie.details_haspel} </div>
-                </OrderItem>
-                <DetailItem>
-                  <div>Type: {selectedAssemblie.type_haspel}</div>{" "}
-                  <div>Artikelnummer: {selectedAssemblie.artnr_haspel} </div>
-                </DetailItem>
-                <DetailItem>
-                  <div>Materiaalkosten: {selectedAssemblie.prijshaspel} </div>
-                </DetailItem>
+                {selectedAssemblie.artnr_haspel === 999999 ? (
+                  <>
+                    {" "}
+                    <OrderTitle>
+                      <div>Opmaak gebonden, geen Haspel geselecteerd</div>
+                    </OrderTitle>{" "}
+                  </>
+                ) : (
+                  <>
+                    <OrderTitle>
+                      <div>Geselecteerde Haspel:</div>
+                    </OrderTitle>
+                    <OrderItem>
+                      <div>{selectedAssemblie.details_haspel} </div>
+                    </OrderItem>
+                    <DetailItem>
+                      <div>
+                        Artikelnummer: {selectedAssemblie.artnr_haspel}{" "}
+                      </div>
+                      <div>
+                        Materiaalkosten: {selectedAssemblie.prijshaspel}{" "}
+                      </div>
+                    </DetailItem>
+                  </>
+                )}
               </OrderContainer>
+
               <OrderContainer>
-                <OrderTitle>
-                  <div>Geselecteerde Afwerking:</div>
-                </OrderTitle>
-                <OrderItem>
-                  <div>{selectedAssemblie.trans_krimp} </div>
-                </OrderItem>
-                <DetailItem>
-                  <div>
-                    Krimpkous Artikelnummer:{" "}
-                    {selectedAssemblie.artnr_trans_krimp}
-                  </div>
-                  <div>
-                    Lengte krimpkous: {selectedAssemblie.lengte_trans_krimp}{" "}
-                  </div>
-                  <div>Materiaalkosten: {selectedAssemblie.prijs_krimp} </div>
-                </DetailItem>
+                {selectedAssemblie.trans_krimp === "kies afwerking" ? (
+                  <>
+                    {" "}
+                    <OrderTitle>
+                      <div>Geen afwerking geselecteerd</div>
+                    </OrderTitle>{" "}
+                  </>
+                ) : (
+                  <>
+                    <OrderTitle>
+                      <div>
+                        Geselecteerde Afwerking: {selectedAssemblie.trans_krimp}
+                      </div>
+                    </OrderTitle>
+
+                    <DetailItem>
+                      <div>
+                        Krimpkous Artikelnummer:{" "}
+                        {selectedAssemblie.artnr_trans_krimp}
+                      </div>
+                      <div>
+                        Lengte krimpkous: {selectedAssemblie.lengte_trans_krimp}{" "}
+                      </div>
+                    </DetailItem>
+                  </>
+                )}
               </OrderContainer>
               <OrderContainer>
                 <Link to="detailsOrder">
                   <ConfirmButton onClick={createOrder}>
-                    Ga verder met assemblie
+                    Ga verder met deze assemblie
                   </ConfirmButton>
                 </Link>
               </OrderContainer>

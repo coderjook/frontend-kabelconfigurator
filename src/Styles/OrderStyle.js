@@ -33,16 +33,15 @@ export const OrderTitle = styled.div`
   background-color: ${romalLichtBlauw};
   filter: contrast(80%);
   color: ${romalBlauw};
-  padding: 5px;
+  font-size: 14px;
+  padding: 3px;
   display: block;
-  // display: grid;
-  // grid-template-columns: 150px 40px 60px;
-  // justify-content: space-between;
 `;
 
 export const OrderItem = styled.div`
   padding: 3px 0px;
   display: grid;
+  font-size: 14px;
   grid-template-columns: 1fr;
   justify-content: space-between;
 `;

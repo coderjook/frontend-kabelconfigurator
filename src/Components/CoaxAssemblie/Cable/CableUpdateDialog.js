@@ -40,16 +40,7 @@ function CableUpdateDialogContainer({
 
   function addToOrder() {
     closeShowCableGrid();
-    UpdateAssemblieCableLength(
-      openCableUpdateDialog.artnr_kabel,
-      openCableUpdateDialog.details_kabel,
-      cableLength.value,
-      openCableUpdateDialog.kabelgroep,
-      subPriceCable,
-      openCableUpdateDialog.diameter_buitenmantel,
-      openCableUpdateDialog.opmaak_aantal,
-      openCableUpdateDialog.haspelgeschikt
-    );
+    UpdateAssemblieCableLength(cableLength.value);
     close();
   }
 

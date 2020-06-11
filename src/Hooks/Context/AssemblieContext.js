@@ -112,28 +112,11 @@ export const Provider = (props) => {
     setSelectedAssemblie(updateAssemblie);
   };
 
-  const UpdateAssemblieCableLength = (
-    artnrCable,
-    detailsCable,
-    lengthCable,
-    groupCable,
-    priceCable,
-    diameterCable,
-    maxLengthCable,
-    haspelCable
-  ) => {
+  const UpdateAssemblieCableLength = (lengthCable) => {
     const updateAssemblie = {
       ...assemblies,
     };
-
-    updateAssemblie.artnr_kabel = artnrCable;
-    updateAssemblie.details_kabel = detailsCable;
     updateAssemblie.lengte_kabel = lengthCable;
-    updateAssemblie.kabelgroep_kabel = groupCable;
-    updateAssemblie.prijs_kabel = priceCable;
-    updateAssemblie.diameter_buitenmantel = diameterCable;
-    updateAssemblie.opmaak_aantal = maxLengthCable;
-    updateAssemblie.haspelgeschikt = haspelCable;
     setAssemblies(updateAssemblie);
     setSelectedAssemblie(updateAssemblie);
   };

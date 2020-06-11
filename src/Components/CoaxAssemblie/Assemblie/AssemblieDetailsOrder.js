@@ -77,7 +77,7 @@ function AssemblieDetailsOrder() {
 
   const handleChange = (event) => {
     setAantalAssemblies(event.target.value);
-    orderAssemblieBos();
+    orderAssemblieBos(totalPriceMaterial, priceLaborBos);
   };
 
   const orderAssemblieBos = (totalPriceMaterial, priceLaborBos) => {
@@ -85,6 +85,7 @@ function AssemblieDetailsOrder() {
     setTotalCostLabor(priceLaborBos);
     const totalBos = totalPriceMaterial + priceLaborBos;
     setTotalCostAssemblie(totalBos);
+    addToOrder();
     console.log(
       "orderAssemblieOrder",
       totalCostMaterial,
@@ -93,11 +94,11 @@ function AssemblieDetailsOrder() {
     );
   };
 
-  const orderAssemblieHaspel = (totalPriceMaterial, priceLaborHaspel) => {
+  const totalOrderAssemblie = (totalPriceMaterial, priceLabor) => {
     setTotalCostMaterial(totalPriceMaterial);
-    setTotalCostLabor(priceLaborHaspel);
-    const totalHaspel = totalPriceMaterial + priceLaborHaspel;
-    setTotalCostAssemblie(totalHaspel);
+    setTotalCostLabor(priceLabor);
+    const totalOrder = totalPriceMaterial + priceLabor;
+    setTotalCostAssemblie(totalOrder);
     addToOrder();
     console.log(
       "orderAssemblieHaspel",
@@ -416,10 +417,30 @@ function AssemblieDetailsOrder() {
                     <b>TOTAALPRIJS ASSEMBLIE</b>
                   </div>
                   <div>
-                    {/* <button onClick={calcAssemblieHaspel}>
-                      {" "}
-                      Bereken de totaalprijs
-                    </button> */}
+                    <button
+                      onClick={() =>
+                        totalOrderAssemblie(
+                          totalPriceMaterial,
+                          priceLaborHaspel
+                        )
+                      }
+                    >
+                      bereken prijs
+                    </button>
+                    <button onClick={addToOrder}> voeg toe aan order</button>
+                    <div>
+                      {orderAssemblie ? (
+                        <>
+                          <div>Hallo dit is je hashpelorder:</div>
+                          <div>{orderAssemblie.totalCostMaterial}</div>
+                        </>
+                      ) : (
+                        <div>nog geen order geplaatst</div>
+                      )}
+                      M:{totalCostMaterial}
+                      A:{totalCostLabor}
+                      T:{totalCostAssemblie} Bereken de totaalprijs
+                    </div>
                   </div>
                   <div>
                     {formatPrice(

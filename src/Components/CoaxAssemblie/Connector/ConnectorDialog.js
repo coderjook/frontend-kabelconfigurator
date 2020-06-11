@@ -41,10 +41,16 @@ function ConnectorDialogContainer({
   );
 
   const tuleOrder = tuleState
-    ? `${tuleState}`
+    ? tuleState
     : installationRadio.value === "geen"
     ? 0
     : 10593;
+
+  //  const tuleOrder = tuleState
+  // ? `${tuleState}`
+  // : installationRadio.value === "geen"
+  // ? 0
+  // : 10593;
 
   const installation = installationRadio.value;
 

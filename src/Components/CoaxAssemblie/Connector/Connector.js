@@ -62,15 +62,6 @@ function Connector() {
                   </div>
                   <div>
                     <Product>
-                      <ChangeButton
-                        onClick={() => {
-                          openConnectorDialog.setOpenConnectorDialog(
-                            selectedAssemblie
-                          );
-                        }}
-                      >
-                        Wijzig connector afwerking
-                      </ChangeButton>
                       <ChangeButton onClick={() => setShowConnectorGrid(true)}>
                         selecteer een andere connector
                       </ChangeButton>

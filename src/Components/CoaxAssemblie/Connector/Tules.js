@@ -28,12 +28,12 @@ function Tules(props) {
               <input
                 type="radio"
                 id={tule.artikelnummer}
-                name={tule.typenummer}
+                name={tule.artikelnummer}
                 value={tule.artikelnummer}
                 checked={props.tuleOrder === tule.artikelnummer}
                 onChange={(e) => props.onChange(e.target.value)}
               />
-              <label for={tule.typenummer}>{tule.typenummer}</label>
+              <label for={tule.artikelnummer}>{tule.typenummer}</label>
             </div>
           </>
         ) : null
