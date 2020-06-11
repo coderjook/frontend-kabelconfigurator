@@ -65,3 +65,55 @@ export const DetailsOrderGrid3 = styled.div`
   padding: 5px;
   margin-left: 20px;
 `;
+
+export const DetailsOrderGrid4 = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  justify-items: start;
+  row-gap: 2px;
+  column-gap: 10px;
+  border-bottom: 1px solid ${romalOranje};
+  padding: 5px;
+  margin-left: 20px;
+`;
+
+export const DetailsOrderTitle = styled.div`
+  background-color: ${romalLichtBlauw};
+  filter: contrast(80%);
+  color: ${romalBlauw};
+  padding: 5px;
+  // display: block;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  justify-items: start;
+  row-gap: 2px;
+  column-gap: 10px;
+`;
+
+export const DetailsOrderFooter = styled.div`
+  background-color: ${romalLichtBlauw};
+  filter: contrast(80%);
+  color: black;
+  padding: 5px;
+  // display: block;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  justify-items: start;
+  row-gap: 2px;
+  column-gap: 10px;
+  margin-bottom: 30px;
+`;
+
+export const DetailsOrderFinalPrice = styled.div`
+  background-color: ${romalBlauw};
+  filter: contrast(80%);
+  color: white;
+  padding: 5px;
+  // display: block;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  justify-items: start;
+  row-gap: 2px;
+  column-gap: 10px;
+  margin-bottom: 30px;
+`;
