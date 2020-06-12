@@ -5,7 +5,8 @@ import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import {
   useOpenCableDialog,
   useOpenCableUpdateDialog,
-} from "../../../Hooks/useOpenCableDialog";
+} from "../../../Hooks/useOpenDialog";
+
 //components
 import { CableDb } from "./CableDb";
 // data kabel vanuit Data: import CableGrid from "./CableGrid";
@@ -25,6 +26,7 @@ function Cable() {
   const { selectedAssemblie } = useContext(AssemblieContext);
   const toggleContent = useToggleContent();
   const openCableDialog = useOpenCableDialog();
+
   const openCableUpdateDialog = useOpenCableUpdateDialog();
   const [showCableGrid, setShowCableGrid] = useState("new");
 

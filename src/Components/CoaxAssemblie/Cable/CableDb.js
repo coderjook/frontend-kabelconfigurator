@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useFetch } from "../../../Hooks/useFetch";
 //styles
 import { ProductStyled } from "../../../Styles/ProductStyle";
 import {
@@ -13,20 +13,10 @@ import {
 import kabelImg from "../../../Assets/Images/lmr40075.jpg";
 
 export const CableDb = ({ setOpenCableDialog, cableStatus }) => {
-  const [cableInfo, setCableInfo] = useState([]);
-  const fetchCableInfo = () => {
-    axios
-      .get("http://localhost:8080/api/kabelconfigurator/kabel")
-      .then((res) => {
-        console.log(res);
-        const data = res.data;
-        setCableInfo(data);
-      });
-  };
-
-  useEffect(() => {
-    fetchCableInfo();
-  }, []);
+  const cableInfo = useFetch(
+    "http://localhost:8080/api/kabelconfigurator/kabel",
+    []
+  );
 
   return (
     <>

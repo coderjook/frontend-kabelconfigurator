@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { useOpenHaspelDialog } from "../../../Hooks/useOpenHaspelDialog";
+import { useOpenHaspelDialog } from "../../../Hooks/useOpenDialog";
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import { HaspelDb } from "./HaspelDb";

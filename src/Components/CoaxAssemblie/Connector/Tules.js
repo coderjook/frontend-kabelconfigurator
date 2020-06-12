@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from "react";
-// import { tules } from "../../../Data/TuleGroepData";
-import axios from "axios";
+import React from "react";
+import { useFetch } from "../../../Hooks/useFetch";
 
 function Tules(props) {
-  const [tuleInfo, setTuleInfo] = useState([]);
-  const fetchTuleInfo = () => {
-    axios
-      .get("http://localhost:8080/api/kabelconfigurator/tulegroep")
-      .then((res) => {
-        console.log(res);
-        const data = res.data;
-        setTuleInfo(data);
-      });
-  };
-
-  useEffect(() => {
-    fetchTuleInfo();
-  }, []);
+  const tuleInfo = useFetch(
+    "http://localhost:8080/api/kabelconfigurator/tulegroep",
+    []
+  );
 
   return (
     <div>

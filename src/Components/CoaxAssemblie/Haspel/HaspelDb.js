@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { useFetch } from "../../../Hooks/useFetch";
 import haspelImg from "../../../Assets/Images/haspel.jpg";
 import { ProductStyled } from "../../../Styles/ProductStyle";
 import {
@@ -11,20 +11,10 @@ import {
 } from "../../../Styles/ProductGrid";
 
 export const HaspelDb = ({ setOpenHaspelDialog }) => {
-  const [haspelInfo, setHaspelInfo] = useState([]);
-  const fetchHaspelInfo = () => {
-    axios
-      .get("http://localhost:8080/api/kabelconfigurator/haspel")
-      .then((res) => {
-        console.log(res);
-        const data = res.data;
-        setHaspelInfo(data);
-      });
-  };
-
-  useEffect(() => {
-    fetchHaspelInfo();
-  }, []);
+  const haspelInfo = useFetch(
+    "http://localhost:8080/api/kabelconfigurator/haspel",
+    []
+  );
 
   return (
     <>

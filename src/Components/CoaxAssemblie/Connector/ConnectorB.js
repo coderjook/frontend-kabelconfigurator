@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 // hooks
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-import { useOpenConnectorDialog } from "../../../Hooks/useOpenConnectorDialog";
+import { useOpenConnectorDialog } from "../../../Hooks/useOpenDialog";
 // components
 import { ConnectorDialog } from "./ConnectorDialog";
 import { ConnectorDb } from "./ConnectorDb";

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 //hooks
+import { useFetch } from "../../../Hooks/useFetch";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 //styles
 import { ProductStyled } from "../../../Styles/ProductStyle";
@@ -23,24 +23,14 @@ export const ConnectorDb = ({ setOpenConnectorDialog }) => {
     orderKabelgroep = selectedAssemblie.kabelgroep_kabel;
   }
 
-  const [connectorInfo, setConnectorInfo] = useState([]);
-  const fetchConnectorInfo = () => {
-    axios
-      .get("http://localhost:8080/api/kabelconfigurator/connector")
-      .then((res) => {
-        console.log(res);
-        const data = res.data;
-        setConnectorInfo(data);
-      });
-  };
+  const connectorInfo = useFetch(
+    "http://localhost:8080/api/kabelconfigurator/connector",
+    []
+  );
 
   const connectors = connectorInfo.filter(
     (connector) => connector.kabelgroep === orderKabelgroep
   );
-
-  useEffect(() => {
-    fetchConnectorInfo();
-  }, []);
 
   return (
     <>
