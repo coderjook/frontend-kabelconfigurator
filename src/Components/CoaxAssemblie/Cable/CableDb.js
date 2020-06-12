@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useFetch } from "../../../Hooks/useFetch";
+//components
+import Spinner from "../../../Utils/Spinner";
 //styles
 import { ProductStyled } from "../../../Styles/ProductStyle";
 import {
@@ -13,16 +15,20 @@ import {
 import kabelImg from "../../../Assets/Images/lmr40075.jpg";
 
 export const CableDb = ({ setOpenCableDialog, cableStatus }) => {
-  const cableInfo = useFetch(
+  const [data, isLoading, isError] = useFetch(
     "http://localhost:8080/api/kabelconfigurator/kabel",
     []
   );
+
+  //check op errors en loading
+  if (isError) return <div>something went wrong</div>;
+  if (isLoading) return <Spinner />;
 
   return (
     <>
       <ProductStyled>
         <ProductGrid>
-          {cableInfo.map((cable, index) => {
+          {data.map((cable, index) => {
             return (
               <Product
                 key={index}

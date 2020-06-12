@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 //hooks
 import { useFetch } from "../../../Hooks/useFetch";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
+//components
+import Spinner from "../../../Utils/Spinner";
 //styles
 import { ProductStyled } from "../../../Styles/ProductStyle";
 import {
@@ -23,12 +25,16 @@ export const ConnectorDb = ({ setOpenConnectorDialog }) => {
     orderKabelgroep = selectedAssemblie.kabelgroep_kabel;
   }
 
-  const connectorInfo = useFetch(
+  const [data, isLoading, isError] = useFetch(
     "http://localhost:8080/api/kabelconfigurator/connector",
     []
   );
 
-  const connectors = connectorInfo.filter(
+  //check op errors en loading
+  if (isError) return <div>something went wrong</div>;
+  if (isLoading) return <Spinner />;
+
+  const connectors = data.filter(
     (connector) => connector.kabelgroep === orderKabelgroep
   );
 

@@ -1,10 +1,10 @@
 import React from "react";
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 import { AssemblieContextProvider } from "./Hooks/Context/AssemblieContext";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { Banner } from "./Components/Banner/Banner";
+import { AssemblieOrders } from "./Components/CoaxAssemblie/Assemblie/AssemblieOrders";
 import CoaxAssemblie from "./Components/CoaxAssemblie/CoaxAssemblie";
-import Test from "./Components/CoaxAssemblie/Assemblie/Test";
 import AssemblieDetailsOrder from "./Components/CoaxAssemblie/Assemblie/AssemblieDetailsOrder";
 
 // import styles
@@ -23,6 +23,7 @@ function App() {
         <Router>
           <CoaxAssemblie path="/" />
           <AssemblieDetailsOrder path="detailsOrder" />
+          <AssemblieOrders path="AssemblieOrders" />
         </Router>
       </AssemblieContextProvider>
     </>

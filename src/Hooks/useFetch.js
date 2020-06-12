@@ -26,5 +26,5 @@ export const useFetch = (urldata, initialValue) => {
     fetchData();
   }, [url]);
 
-  return data;
+  return [data, isLoading, isError];
 };

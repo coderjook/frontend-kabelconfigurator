@@ -1,5 +1,6 @@
 import React from "react";
 import { useFetch } from "../../../Hooks/useFetch";
+import Spinner from "../../../Utils/Spinner";
 import haspelImg from "../../../Assets/Images/haspel.jpg";
 import { ProductStyled } from "../../../Styles/ProductStyle";
 import {
@@ -11,16 +12,20 @@ import {
 } from "../../../Styles/ProductGrid";
 
 export const HaspelDb = ({ setOpenHaspelDialog }) => {
-  const haspelInfo = useFetch(
+  const [data, isLoading, isError] = useFetch(
     "http://localhost:8080/api/kabelconfigurator/haspel",
     []
   );
+
+  //check op errors en loading
+  if (isError) return <div>something went wrong</div>;
+  if (isLoading) return <Spinner />;
 
   return (
     <>
       <ProductStyled>
         <ProductGrid>
-          {haspelInfo.map((haspel, index) => {
+          {data.map((haspel, index) => {
             return (
               <Product
                 key={index}

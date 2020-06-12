@@ -3,7 +3,6 @@ import { Link } from "@reach/router";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import { formatPrice } from "../../../Utils/FormatPrice";
 import {
-  OrderTitle,
   DetailsOrderGrid4,
   DetailsOrderStyled,
   DetailsOrderTitle,
@@ -57,15 +56,15 @@ const getPriceLaborHaspel = (selectedAssemblie, aantalAssemblies) => {
   return priceLaborHaspel;
 };
 
-const calcAssemblieBos = (totalPriceMaterial, priceLaborBos) => {
-  const totalBos = totalPriceMaterial + priceLaborBos;
-  return totalBos;
-};
+// const calcAssemblieBos = (totalPriceMaterial, priceLaborBos) => {
+//   const totalBos = totalPriceMaterial + priceLaborBos;
+//   return totalBos;
+// };
 
-const calcAssemblieHaspel = (totalPriceMaterial, priceLaborHaspel) => {
-  const totalHaspel = totalPriceMaterial + priceLaborHaspel;
-  return totalHaspel;
-};
+// const calcAssemblieHaspel = (totalPriceMaterial, priceLaborHaspel) => {
+//   const totalHaspel = totalPriceMaterial + priceLaborHaspel;
+//   return totalHaspel;
+// };
 
 function AssemblieDetailsOrder() {
   const { selectedAssemblie } = useContext(AssemblieContext);
@@ -77,31 +76,31 @@ function AssemblieDetailsOrder() {
 
   const handleChange = (event) => {
     setAantalAssemblies(event.target.value);
-    orderAssemblieBos(totalPriceMaterial, priceLaborBos);
+    // orderAssemblieBos(totalPriceMaterial, priceLaborBos);
   };
 
-  const orderAssemblieBos = (totalPriceMaterial, priceLaborBos) => {
-    setTotalCostMaterial(totalPriceMaterial);
-    setTotalCostLabor(priceLaborBos);
-    const totalBos = totalPriceMaterial + priceLaborBos;
-    setTotalCostAssemblie(totalBos);
-    addToOrder();
-    console.log(
-      "orderAssemblieOrder",
-      totalCostMaterial,
-      totalCostLabor,
-      totalCostAssemblie
-    );
-  };
+  // const orderAssemblieBos = (totalPriceMaterial, priceLaborBos) => {
+  //   setTotalCostMaterial(totalPriceMaterial);
+  //   setTotalCostLabor(priceLaborBos);
+  //   const totalBos = totalPriceMaterial + priceLaborBos;
+  //   setTotalCostAssemblie(totalBos);
+  //   addToOrder();
+  //   console.log(
+  //     "orderAssemblieOrder",
+  //     totalCostMaterial,
+  //     totalCostLabor,
+  //     totalCostAssemblie
+  //   );
+  // };
 
   const totalOrderAssemblie = (totalPriceMaterial, priceLabor) => {
     setTotalCostMaterial(totalPriceMaterial);
     setTotalCostLabor(priceLabor);
     const totalOrder = totalPriceMaterial + priceLabor;
     setTotalCostAssemblie(totalOrder);
-    addToOrder();
+    // addToOrder();
     console.log(
-      "orderAssemblieHaspel",
+      "bedragen van order: ",
       totalCostMaterial,
       totalCostLabor,
       totalCostAssemblie
@@ -109,8 +108,9 @@ function AssemblieDetailsOrder() {
   };
   let order = null;
 
-  function addToOrder() {
+  const addToOrder = () => {
     order = {
+      orderNr: new Date().getTime().toString(),
       assemblieID: selectedAssemblie.assemblieID,
       totalCostMaterial: totalCostMaterial,
       totalCostLabor: totalCostLabor,
@@ -124,7 +124,7 @@ function AssemblieDetailsOrder() {
       order.totalCostLabor,
       order.totalCostAssemblie
     );
-  }
+  };
 
   return (
     <>
@@ -144,6 +144,13 @@ function AssemblieDetailsOrder() {
                   value={aantalAssemblies}
                   onChange={handleChange}
                 />
+                <ConfirmButton
+                  onClick={() =>
+                    totalOrderAssemblie(totalPriceMaterial, priceLaborHaspel)
+                  }
+                >
+                  Bereken de totaalprijs
+                </ConfirmButton>
               </div>
             </DetailsOrderGrid4>
 
@@ -330,32 +337,49 @@ function AssemblieDetailsOrder() {
                     <b>TOTAALPRIJS ASSEMBLIE</b>
                   </div>
                   <div>
-                    <button
+                    <ConfirmButton
                       onClick={() =>
-                        orderAssemblieBos(totalPriceMaterial, priceLaborBos)
+                        totalOrderAssemblie(totalPriceMaterial, priceLaborBos)
                       }
                     >
-                      bereken prijs
-                    </button>
-                    <button onClick={addToOrder}> voeg toe aan order</button>
-                    <div>
-                      {orderAssemblie ? (
-                        <>
-                          <div>Hallo dit is je order:</div>
-                          <div>{orderAssemblie.totalCostMaterial}</div>
-                        </>
-                      ) : (
-                        <div>nog geen order geplaatst</div>
-                      )}
-                      M:{totalCostMaterial}
-                      A:{totalCostLabor}
-                      T:{totalCostAssemblie} Bereken de totaalprijs
-                    </div>
+                      Bereken de totaalprijs
+                    </ConfirmButton>
                   </div>
                   <div>
-                    {formatPrice(
+                    {/* {formatPrice(
                       calcAssemblieBos(totalPriceMaterial, priceLaborBos)
+                    )} */}
+                    {totalCostAssemblie
+                      ? formatPrice(totalCostAssemblie)
+                      : null}
+                  </div>
+                </DetailsOrderFinalPrice>
+
+                <DetailsOrderFinalPrice>
+                  <div />
+                  <div>
+                    <b>OPDRACHT VOOR KABELATELIER:</b>
+                  </div>
+                  <div>
+                    <ConfirmButton onClick={addToOrder}>
+                      {" "}
+                      Plaats opdracht
+                    </ConfirmButton>
+                  </div>
+                  <div>
+                    {orderAssemblie ? (
+                      <>
+                        <div>Toaalbedragorder:</div>
+                      </>
+                    ) : (
+                      <div>nog geen order geplaatst</div>
                     )}
+                  </div>
+                  <div>
+                    {/* {formatPrice(
+                      calcAssemblieBos(totalPriceMaterial, priceLaborBos)
+                    )} */}
+                    {orderAssemblie ? orderAssemblie.totalCostAssemblie : null}
                   </div>
                 </DetailsOrderFinalPrice>
               </DetailsOrderStyled>
@@ -411,13 +435,14 @@ function AssemblieDetailsOrder() {
                     </b>
                   </div>
                 </DetailsOrderFooter>
+
                 <DetailsOrderFinalPrice>
                   <div />
                   <div>
                     <b>TOTAALPRIJS ASSEMBLIE</b>
                   </div>
                   <div>
-                    <button
+                    <ConfirmButton
                       onClick={() =>
                         totalOrderAssemblie(
                           totalPriceMaterial,
@@ -425,27 +450,35 @@ function AssemblieDetailsOrder() {
                         )
                       }
                     >
-                      bereken prijs
-                    </button>
-                    <button onClick={addToOrder}> voeg toe aan order</button>
-                    <div>
-                      {orderAssemblie ? (
-                        <>
-                          <div>Hallo dit is je hashpelorder:</div>
-                          <div>{orderAssemblie.totalCostMaterial}</div>
-                        </>
-                      ) : (
-                        <div>nog geen order geplaatst</div>
-                      )}
-                      M:{totalCostMaterial}
-                      A:{totalCostLabor}
-                      T:{totalCostAssemblie} Bereken de totaalprijs
-                    </div>
+                      Bereken de totaalprijs
+                    </ConfirmButton>
                   </div>
                   <div>
-                    {formatPrice(
-                      calcAssemblieHaspel(totalPriceMaterial, priceLaborHaspel)
-                    )}
+                    {totalCostAssemblie && totalCostAssemblie !== 1
+                      ? formatPrice(totalCostAssemblie)
+                      : null}
+                  </div>
+                </DetailsOrderFinalPrice>
+
+                <DetailsOrderFinalPrice>
+                  <div />
+                  <div>
+                    <b>OPDRACHT VOOR KABELATELIER:</b>
+                  </div>
+                  <div>
+                    <ConfirmButton onClick={addToOrder}>
+                      {" "}
+                      Plaats opdracht
+                    </ConfirmButton>
+                  </div>
+
+                  <div>
+                    {/* {formatPrice(
+                      calcAssemblieBos(totalPriceMaterial, priceLaborBos)
+                    )} */}
+                    {orderAssemblie.orderNr
+                      ? `Ordernr:  ${orderAssemblie.orderNr}`
+                      : null}
                   </div>
                 </DetailsOrderFinalPrice>
               </DetailsOrderStyled>

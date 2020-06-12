@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 
 export async function makePostRequestAssemblie(params) {
@@ -8,6 +7,15 @@ export async function makePostRequestAssemblie(params) {
   //   };
 
   let res = await axios.post(
+    "http://localhost:8080/api/kabelconfigurator/assemblie",
+    params
+  );
+
+  console.log(res.data);
+}
+
+export async function makeDeleteRequestAssemblie(params) {
+  let res = await axios.delete(
     "http://localhost:8080/api/kabelconfigurator/assemblie",
     params
   );

@@ -1,16 +1,21 @@
 import React from "react";
 import { useFetch } from "../../../Hooks/useFetch";
+import Spinner from "../../../Utils/Spinner";
 
 function Tules(props) {
-  const tuleInfo = useFetch(
+  const [data, isLoading, isError] = useFetch(
     "http://localhost:8080/api/kabelconfigurator/tulegroep",
     []
   );
 
+  //check op errors en loading
+  if (isError) return <div>something went wrong</div>;
+  if (isLoading) return <Spinner />;
+
   return (
     <div>
       <h3>Kies de kleur van de tule:</h3>
-      {tuleInfo.map((tule) =>
+      {data.map((tule) =>
         tule.tulegroep === `${props.tulegroep}` ? (
           <>
             <div>

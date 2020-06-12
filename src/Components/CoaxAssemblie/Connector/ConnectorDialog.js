@@ -60,7 +60,6 @@ function ConnectorDialogContainer({
       openConnectorDialog.inkoopprijs / openConnectorDialog.prijsper;
     const priceInstallation = installation === "geen" ? 0 : 0.25;
     subPriceConnector = priceConnector + priceInstallation;
-    console.log("inst", priceInstallation);
     return subPriceConnector;
   };
 

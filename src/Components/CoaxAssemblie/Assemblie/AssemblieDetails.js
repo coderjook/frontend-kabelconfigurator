@@ -4,6 +4,7 @@ import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import { makePostRequestAssemblie } from "../../../DataDb/PostRequestAssemblie";
 import {
   OrderStyled,
+  OrderHeader,
   OrderTitle,
   OrderContent,
   OrderContainer,
@@ -28,6 +29,7 @@ function AssemblieDetails() {
       artnr_haspel: selectedAssemblie.artnr_haspel,
       trans_krimp: selectedAssemblie.trans_krimp,
       lengte_trans_krimp: selectedAssemblie.lengte_trans_krimp,
+      artnr_assemblie: selectedAssemblie.artnr_assemblie,
     };
 
     makePostRequestAssemblie(params);
@@ -41,7 +43,9 @@ function AssemblieDetails() {
           <OrderStyled>
             <OrderContent>
               <OrderContainer>
-                <div>AssemblieNR:{selectedAssemblie.assemblieID} </div>
+                <OrderHeader>
+                  Assemblie artikelnummer:{selectedAssemblie.artnr_assemblie}{" "}
+                </OrderHeader>
 
                 <OrderTitle>
                   <div>Geselecteerde kabel: </div>

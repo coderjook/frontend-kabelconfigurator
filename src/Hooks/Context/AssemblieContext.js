@@ -30,6 +30,7 @@ export const Provider = (props) => {
   ) => {
     const newAssemblie = {
       assemblieID: uuidv4(),
+      artnr_assemblie: new Date().getTime().toString(),
       artnr_kabel: artnrCable,
       details_kabel: detailsCable,
       lengte_kabel: lengthCable,
