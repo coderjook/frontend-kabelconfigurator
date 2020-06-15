@@ -22,6 +22,7 @@ function HaspelGrid({ setOpenHaspelDialog }) {
           <ProductGrid>
             {haspels.map((haspel) => (
               <Product
+                key={haspel.artikelnummer}
                 onClick={() => {
                   setOpenHaspelDialog(haspel);
                 }}

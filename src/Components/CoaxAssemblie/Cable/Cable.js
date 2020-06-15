@@ -8,8 +8,8 @@ import {
 } from "../../../Hooks/useOpenDialog";
 
 //components
-import { CableDb } from "./CableDb";
-// data kabel vanuit Data: import CableGrid from "./CableGrid";
+// import { CableDb } from "./CableDb";
+import CableGrid from "./CableGrid";
 import { CableDialog } from "./CableDialog";
 import { CableUpdateDialog } from "./CableUpdateDialog";
 //styles
@@ -109,8 +109,8 @@ function Cable() {
             <div>Stap 1: Selecteer een kabel</div>
             <div /> <div />
           </ProductHeader>
-          <CableDb {...openCableDialog} cableStatus="cableNew" />
-          {/* <CableGrid {...openCableDialog} /> */}
+          {/* <CableDb {...openCableDialog} cableStatus="cableNew" /> */}
+          <CableGrid {...openCableDialog} cableStatus="cableNew" />
         </>
       ) : showCableGrid === "openUpdate" ? (
         <>
@@ -126,8 +126,8 @@ function Cable() {
           <ChangeButton onClick={() => setShowCableGrid("none")}>
             terug
           </ChangeButton>
-          <CableDb {...openCableDialog} cableStatus="cableUpdate" />
-          {/* <CableGrid {...openCableDialog} /> */}
+          {/* <CableDb {...openCableDialog} cableStatus="cableUpdate" /> */}
+          <CableGrid {...openCableDialog} cableStatus="cableUpdate" />
         </>
       ) : null}
     </>

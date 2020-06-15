@@ -21,13 +21,13 @@ const Logo = styled(title)`
   text-shadow: 1px 1px 4px grey;
 `;
 
-const Menu = styled.div`
-  display: inline;
-  font-size: 16px;
-  padding-left: 20px;
-  color: grey;
-  text-shadow: 1px 1px 4px grey;
-`;
+// const Menu = styled.div`
+//   display: inline;
+//   font-size: 16px;
+//   padding-left: 20px;
+//   color: grey;
+//   text-shadow: 1px 1px 4px grey;
+// `;
 
 export function Navbar() {
   return (
@@ -38,9 +38,9 @@ export function Navbar() {
         </Link>
       </Logo>
       <Logo>COAX KABELCONFIGURATOR</Logo>
-      <Menu>
+      {/* <Menu>
         <Link to="AssemblieOrders">Lijst assemblies</Link>
-      </Menu>
+      </Menu> */}
     </NavbarStyled>
   );
 }

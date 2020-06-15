@@ -4,7 +4,8 @@ import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import { useOpenConnectorDialog } from "../../../Hooks/useOpenDialog";
 // components
-import { ConnectorDb } from "./ConnectorDb";
+// import { ConnectorDb } from "./ConnectorDb";
+import ConnectorGrid from "./ConnectorGrid";
 import { ConnectorDialog } from "./ConnectorDialog";
 // styles
 import { ChangeButton } from "../../../Styles/ButtonStyle";
@@ -78,7 +79,8 @@ function Connector() {
               <div>Stap 2: Selecteer een connector voor kant A</div>
               <div /> <div />
             </ProductHeader>
-            <ConnectorDb {...openConnectorDialog} />
+            {/* <ConnectorDb {...openConnectorDialog} /> */}
+            <ConnectorGrid {...openConnectorDialog} />
           </>
         )
       ) : null}
@@ -93,7 +95,8 @@ function Connector() {
             <div>Stap 2: Selecteer een connector voor kant A</div>
             <div /> <div />
           </ProductHeader>
-          <ConnectorDb {...openConnectorDialog} />
+          {/* <ConnectorDb {...openConnectorDialog} /> */}
+          <ConnectorGrid {...openConnectorDialog} />
         </>
       ) : null}
     </>

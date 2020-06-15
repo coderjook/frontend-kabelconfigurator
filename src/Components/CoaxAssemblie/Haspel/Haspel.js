@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { useOpenHaspelDialog } from "../../../Hooks/useOpenDialog";
 import { useToggleContent } from "../../../Hooks/useToggleContent";
 import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
-import { HaspelDb } from "./HaspelDb";
+// import { HaspelDb } from "./HaspelDb";
+import HaspelGrid from "./HaspelGrid";
 import { HaspelDialog } from "./HaspelDialog";
 import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
 import { ConfirmButton } from "../../../Styles/ButtonStyle";
@@ -142,7 +143,8 @@ function Haspel() {
           ) : null}
           {opmaakHaspel === "haspel" ? (
             <>
-              <HaspelDb {...openHaspel} />
+              {/* <HaspelDb {...openHaspel} /> */}
+              <HaspelGrid {...openHaspel} />
             </>
           ) : null}
         </>

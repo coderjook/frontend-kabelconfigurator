@@ -5,7 +5,8 @@ import { AssemblieContext } from "../../../Hooks/Context/AssemblieContext";
 import { useOpenConnectorDialog } from "../../../Hooks/useOpenDialog";
 // components
 import { ConnectorDialog } from "./ConnectorDialog";
-import { ConnectorDb } from "./ConnectorDb";
+// import { ConnectorDb } from "./ConnectorDb";
+import ConnectorGrid from "./ConnectorGrid";
 // import ConnectorGrid from "./ConnectorGrid";
 //styles
 import { ProductHeader, ProductStyled } from "../../../Styles/ProductStyle";
@@ -79,7 +80,8 @@ function ConnectorB() {
               <div>Stap 2: Selecteer een connector voor kant B</div>
               <div /> <div />
             </ProductHeader>
-            <ConnectorDb {...openConnectorDialog} />
+            {/* <ConnectorDb {...openConnectorDialog} /> */}
+            <ConnectorGrid {...openConnectorDialog} />
           </>
         )
       ) : null}
@@ -94,8 +96,8 @@ function ConnectorB() {
             <div>Stap 3: Selecteer een connector voor kant B</div>
             <div /> <div />
           </ProductHeader>
-          <ConnectorDb {...openConnectorDialog} />
-          {/* <ConnectorGrid {...openConnectorDialog} /> */}
+          {/* <ConnectorDb {...openConnectorDialog} /> */}
+          <ConnectorGrid {...openConnectorDialog} />
         </>
       ) : null}
     </>

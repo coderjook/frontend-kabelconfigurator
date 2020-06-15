@@ -1,21 +1,22 @@
 import React from "react";
 import { useFetch } from "../../../Hooks/useFetch";
-import Spinner from "../../../Utils/Spinner";
+import { tules } from "../../../Data/TuleGroepData";
+// import Spinner from "../../../Utils/Spinner";
 
 function Tules(props) {
-  const [data, isLoading, isError] = useFetch(
-    "http://localhost:8080/api/kabelconfigurator/tulegroep",
-    []
-  );
+  // const [data, isLoading, isError] = useFetch(
+  //   "http://localhost:8080/api/kabelconfigurator/tulegroep",
+  //   []
+  // );
 
-  //check op errors en loading
-  if (isError) return <div>something went wrong</div>;
-  if (isLoading) return <Spinner />;
+  // //check op errors en loading
+  // if (isError) return <div>something went wrong</div>;
+  // if (isLoading) return <Spinner />;
 
   return (
     <div>
       <h3>Kies de kleur van de tule:</h3>
-      {data.map((tule) =>
+      {tules.map((tule) =>
         tule.tulegroep === `${props.tulegroep}` ? (
           <>
             <div>
